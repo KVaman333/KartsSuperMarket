@@ -1,0 +1,32 @@
+from firebase_admin import db
+
+
+
+
+def validate_cookie(request):
+    cookie = request.COOKIES.get('user', None)
+    if cookie:
+        return True
+    else:
+        return False
+
+def get_cookie_user(request):
+    cookie_user = request.COOKIES.get('user', None)
+    return cookie_user
+
+
+def user_auth(user_name, user_password):
+    database = db.reference('Users')
+    database = database.get()
+
+    keys_list = database.keys()
+    verified  = False
+
+    for key in keys_list:
+        if key == user_name and user_password == database[key]['password']:
+            verified = True
+        else:
+            pass
+
+
+    return verified

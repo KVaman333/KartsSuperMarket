@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+
+<section class="ftco-section">
+   <div class="container">
+      <div class="row justify-content-center">
+         <div class="col-xl-8 ftco-animate">
+            <form action="." class="billing-form bg-light p-3 p-md-5" method="POST" > {% csrf_token %}
+               <h3 class="mb-4 billing-heading">Details P.O. Number <u>{{po_num}}</U></h3>
+               <div class="row align-items-end">
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <h4 style="font-color: #000000;">Vendor</h4>
+                        <h4>{{vendor}}</h4>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <h4>P.O. Amount</h4>
+                        <h4>{{po_amount}}</h4>
+                     </div>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="Invoice Number">Invoice Number</label>
+                        <input name="invoice_no" type="text" class="form-control" placeholder="Number" required>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <label for="Invoice Amount">Invoice Amount</label>
+                        <input name="invoice_amt" type="text" class="form-control" placeholder="Amount" required>
+                     </div>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col-md-12">
+                     <div class="form-group">
+                        <label for="Remark">Remark</label>
+                        <div class="select-wrap">
+                           <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                           <select name="remark" id="" class="form-control">
+                              <option value="Not Complete">Not Complete</option>
+                              <option value="Complete">Complete</option>
+                           </select>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-12" style="padding-left: 38%">
+                     <div class="form-group" >
+                     <button class="btn3" type="submit">Submit</button>
+                     </div>
+                  </div>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+</section>
+
+
+{% endblock main %}
