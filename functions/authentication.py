@@ -4,7 +4,7 @@ from firebase_admin import db
 
 
 def validate_cookie(request):
-    cookie = request.COOKIES.get('user', None)
+    cookie = request.COOKIES.get('user', False)
     if cookie:
         return True
     else:

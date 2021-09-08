@@ -73,3 +73,17 @@ def update_gr(request, *args, **kwargs):
             return redirect(reverse('po'))
     else:
         return redirect(reverse('login'))
+
+
+
+
+
+
+
+
+
+
+def error404_handler(request, *args, **kwargs):
+    return render(request, '404_dh.html')
+def error500_handler(request, *args, **kwargs):
+    return render(request, '500_dh.html')

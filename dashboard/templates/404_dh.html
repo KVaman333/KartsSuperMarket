@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block main %}
+
+
+<section class="ftco-section-parallax">
+   <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+         <div class="row d-flex justify-content-center py-5">
+            <div class="col-md-7 text-center heading-section ftco-animate">
+               <div style="font-color: #BDC3C7" ><h1 class="big">404</h1></div>
+               <h2>Page Not Found. 404</h2>
+               <div class="row d-flex justify-content-center mt-5">
+                  <div class="col-md-8">
+                     <form action="." method="POST" class="subscribe-form"> {% csrf_token %}
+                        <div class="form-group d-flex">
+                           <input name="text" type="password" class="form-control" placeholder="Please Report Error Here." required>
+                           <input type="submit" value="Enter" class="submit px-3">
+                        </div>
+                        <p>Invalid URL.</p>
+                     </form>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section> 
+
+
+{% endblock main %}
