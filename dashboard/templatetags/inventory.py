@@ -7,13 +7,21 @@ register = template.Library()
 def get_locator(item, database):
     return database[item]['STOCK LOCATOR']
 
-@register.filter(name="get_vendorid")
-def get_vendorid(item, database):
+@register.filter(name="get_item_order")
+def get_item_order(item, database):
     return database[item]['ITEM ORDER']
 
 @register.filter(name="get_description")
 def get_description(item, database):
     return database[item]['DESCRIPTION']
+
+@register.filter(name="get_sub_description")
+def get_sub_description(item, database):
+    return database[item]['SUB-DESCRIPTION']
+
+@register.filter(name="get_vendorid")
+def get_vendorid(item, database):
+    return database[item]['VENDOR ID']
 
 @register.filter(name="get_qty")
 def get_qty(item, database):
@@ -31,24 +39,20 @@ def get_sell(item, database):
         sell = str(round(float(database[item]['PRICE SELL']), 2))
     return sell
 
-@register.filter(name="get_upc")
-def get_upc(item, database):
-    if database[item]['UPC'] == "":
+@register.filter(name="get_unit_upc")
+def get_unit_upc(item, database):
+    if database[item]['UNIT UPC'] == "":
         sell = ""
     else:
-        sell = str(round(float(database[item]['UPC'])))
+        sell = str(round(float(database[item]['UNIT UPC'])))
     return sell
 
-# @register.filter(name="get_locator")
-# def get_locator(item, database):
-#     return database[item]['Stock Locator']
-
-# @register.filter(name="get_locator")
-# def get_locator(item, database):
-#     return database[item]['Stock Locator']
-
-# @register.filter(name="get_locator")
-# def get_locator(item, database):
-#     return database[item]['Stock Locator']
+@register.filter(name="get_pack_upc")
+def get_pack_upc(item, database):
+    if database[item]['PACK UPC'] == "":
+        sell = ""
+    else:
+        sell = str(round(float(database[item]['PACK UPC'])))
+    return sell
 
 

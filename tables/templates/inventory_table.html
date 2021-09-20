@@ -30,21 +30,27 @@
                     <th>Stock Locator</th>
                     <th>Vendor Item ID</th>
                     <th>Description</th>
-                    <th>Quantity</th>
+                    <th>Sub-Description</th>
                     <th>Price Sell</th>
-                    <th>UPC</th>
+                    <th>Unit UPC</th>
+                    <th>Pack UPC</th>
+                    <th>Quantity</th>
+                    <th>Vendor ID</th>
                     {% comment %} <th>Pack UPC</th> {% endcomment %}
                   </tr>
                 </thead>
                 <tbody>
                 {% for item in database %}
                   <tr>
-                    <td>{{item|get_locator:database}}</td>
-                    <td>{{item|get_vendorid:database}}</td>
-                    <td>{{item|get_description:database}}</td>
-                    <td>{{item|get_qty:database}}</td>
+                    <td>{{item|get_locator:database}}</td> 
+                    <td>{{item|get_item_order:database}}</td> 
+                    <td>{{item|get_description:database}}</td> 
+                    <td>{{item|get_sub_description:database}}</td> 
                     <td>{{item|get_sell:database}}</td>
-                    <td>{{item|get_upc:database}}</td>
+                    <td>{{item|get_unit_upc:database}}</td> 
+                    <td>{{item|get_pack_upc:database}}</td> 
+                    <td>{{item|get_qty:database}}</td> 
+                    <td>{{item|get_vendorid:database}}</td>
                   </tr>
                 {% endfor %}
                 </tbody>
@@ -53,9 +59,12 @@
                     <th>Stock Locator</th>
                     <th>Vendor Item ID</th>
                     <th>Description</th>
-                    <th>Quantity</th>
+                    <th>Sub-Description</th>
                     <th>Price Sell</th>
-                    <th>UPC</th>
+                    <th>Unit UPC</th>
+                    <th>Pack UPC</th>
+                    <th>Quantity</th>
+                    <th>Vendor ID</th>
                     {% comment %} <th>Pack UPC</th> {% endcomment %}
                   </tr>
                 </tfoot>

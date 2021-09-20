@@ -16,17 +16,18 @@ with open('Karts-Inventory.csv') as file:
         else:pass
         database[uuid] = {}
 
-        database[uuid] = {
+        database[uuid] = { #STOCK LOCATOR,ITEM ORDER,DESCRIPTION,SUB DESCRIPTION,PRICE BUY,PRICE SELL,UNIT UPC,PACK UPC,QTY,DEPARTMENT,VENDOR ID
             "STOCK LOCATOR"   : uuid,
             "ITEM ORDER"      : line[1],
             "DESCRIPTION"     : line[2],
-            "PRICE BUY"       : line[3],
-            "PRICE SELL"      : line[4],
-            "UPC"             : line[5],
-            "DEPARTMENT"      : line[6],
-            "SUB DESCRIPTION" : line[7],
+            "SUB-DESCRIPTION" : line[3],
+            "PRICE BUY"       : line[4],
+            "PRICE SELL"      : line[5],
+            "UNIT UPC"        : line[6],
+            "PACK UPC"        : line[7],
             "QTY"             : line[8],
-            "VENDOR ID"       : line[9],
+            "DEPARTMENT"      : line[9],
+            "VENDOR ID"       : line[10],
         }
 
     db    = json.dumps(database, indent=2, sort_keys=True)
