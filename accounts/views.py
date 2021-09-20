@@ -1,4 +1,4 @@
-from functions.accounts import add_receipts, add_wo
+from functions.accounts import add_receipts, add_wo, get_receipt_id
 from functions.authentication import validate_cookie, get_cookie_user
 from django.shortcuts import render, redirect
 from django.urls      import reverse
@@ -28,7 +28,6 @@ def receipt(request, *args, **kwargs):
             if 'name' in request.POST and 'amount' in request.POST and 'pay' in request.POST and 'remarks' in request.POST:
                 return redirect(f"/./dashboard/accounts/receipts/add/{request.POST['name']}/{request.POST['amount']}/{request.POST['pay']}/{request.POST['remarks']}/")
             else:
-                print(request.POST)
                 ginger = {
                     'invalid_details':True,
                 }
@@ -62,7 +61,22 @@ def add_receipt(request, *args, **kwargs):
         amount  = kwargs['amount']
         pay     = kwargs['pay']
         remarks = kwargs['remarks']
-        add_receipts(user,name,amount,pay,remarks)
-        return redirect(reverse('receipt'))
+        receipt_id = add_receipts(user,name,amount,pay,remarks)
+        return redirect(f'/dashboard/accounts/receipt/confirm/{receipt_id}/')
+    else:
+        return redirect(reverse('login'))
+
+
+def receipt_id_con(request, *args, **kwargs):
+    if validate_cookie(request):
+        if request.method == 'POST':
+            return redirect(reverse('receipt'))
+        else:
+            if 'receipt_id' in kwargs:
+                id = kwargs['receipt_id']
+                ginger={'id':id}
+                return render(request, 'receipt_id_confirm.html', ginger)
+            else:
+                return redirect(reverse('receipt'))
     else:
         return redirect(reverse('login'))
