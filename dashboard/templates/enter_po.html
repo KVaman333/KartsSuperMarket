@@ -16,7 +16,7 @@
                   <div class="col-md-8">
                      <form action="." method="POST" class="subscribe-form"> {% csrf_token %}
                         <div class="form-group d-flex">
-                           <input name="po_num" type="text" class="form-control" placeholder="Parchase Order Number">
+                           <input name="po_num" type="text" class="form-control" placeholder="Purchase Order Number">
                            <input type="submit" value="Search" class="submit px-3" required>
                         </div>
                         {% if no_details %}

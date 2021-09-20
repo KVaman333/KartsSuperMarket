@@ -28,7 +28,7 @@ def get_sell(item, database):
     if database[item]['PRICE SELL'] == "":
         sell = ""
     else:
-        sell = str(round(float(database[item]['PRICE SELL'])))
+        sell = str(round(float(database[item]['PRICE SELL']), 2))
     return sell
 
 @register.filter(name="get_upc")
