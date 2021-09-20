@@ -17,15 +17,27 @@ def get_description(item, database):
 
 @register.filter(name="get_qty")
 def get_qty(item, database):
-    return round(database[item]['QTY'])
+    if database[item]['QTY'] == "":
+        qty = ""
+    else:
+        qty = str(round(float(database[item]['QTY'])))
+    return qty
 
 @register.filter(name="get_sell")
 def get_sell(item, database):
-    return round(database[item]['PRICE SELL'], 2)
+    if database[item]['PRICE SELL'] == "":
+        sell = ""
+    else:
+        sell = str(round(float(database[item]['PRICE SELL'])))
+    return sell
 
 @register.filter(name="get_upc")
 def get_upc(item, database):
-    return round(database[item]['UPC'])
+    if database[item]['UPC'] == "":
+        sell = ""
+    else:
+        sell = str(round(float(database[item]['UPC'])))
+    return sell
 
 # @register.filter(name="get_locator")
 # def get_locator(item, database):
