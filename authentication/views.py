@@ -11,13 +11,13 @@ def domain(request, *args, **kwargs):
 
 def login(request, *args, **kwargs):
     if validate_cookie(request):
-        return redirect(reverse('po'))
+        return redirect(reverse('homepage'))
     else:
         if request.method == 'POST':
             if 'username' in request.POST and 'password' in request.POST:
                 verified = user_auth(request.POST['username'], request.POST['password'])
                 if verified:
-                    response = redirect(reverse('po'))
+                    response = redirect(reverse('homepage'))
                     response.set_cookie('user',request.POST['username'])
                     return response
                 else:

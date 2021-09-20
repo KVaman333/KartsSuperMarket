@@ -5,6 +5,12 @@ from django.urls      import reverse
 
 # Create your views here.
 
+def homepage(request, *args, **kwargs):
+    if validate_cookie(request):
+        return render(request, 'homepage.html')
+    else:
+        return redirect(reverse('login'))
+
 def enter_po(request, *args, **kwargs):
     if validate_cookie(request):
         if request.method == 'POST':

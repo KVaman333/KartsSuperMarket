@@ -4,6 +4,7 @@ from .views      import *
 
 
 urlpatterns = [
+    path('homepage/', homepage, name='homepage'),
     path('accounts/',include('accounts.urls')),
     path('data-tables/',include('tables.urls')),
     path('PAGE-NOT-FOUND/', error404_handler, name='pnf_dh'),
