@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*0=+tmm5z0t6zwwefi#hfj7fwj3q)$2g15im8!b1pqr0%@rm%%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 cred = credentials.Certificate(BASE_DIR/"KartsSuperMarket/api.json")
@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     #  CUSTOM APPS  #
     'authentication',
     'dashboard',
+    'accounts',
+    'tables',
 ]
 
 MIDDLEWARE = [
@@ -131,10 +133,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
+# STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
@@ -145,4 +147,4 @@ MEDIA_URL = '/media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 TEMPLATETAGS_URL = '/templatetags/'
-TEMPLATETAGS_ROOT = BASE_DIR / "/dashboard/templatetags"
+TEMPLATETAGS_ROOT = BASE_DIR / "/dashboard/templatetags/"
