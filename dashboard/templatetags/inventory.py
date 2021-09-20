@@ -17,15 +17,15 @@ def get_description(item, database):
 
 @register.filter(name="get_qty")
 def get_qty(item, database):
-    return database[item]['QTY']
+    return round(database[item]['QTY'])
 
 @register.filter(name="get_sell")
 def get_sell(item, database):
-    return database[item]['PRICE SELL']
+    return round(database[item]['PRICE SELL'], 2)
 
 @register.filter(name="get_upc")
 def get_upc(item, database):
-    return database[item]['UPC']
+    return round(database[item]['UPC'])
 
 # @register.filter(name="get_locator")
 # def get_locator(item, database):
