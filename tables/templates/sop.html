@@ -1,0 +1,183 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load inventory %}
+
+
+{% block main %}
+
+<div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-">
+          <div class="col-sm-2">
+            <a href="{% url 'homepage' %}"><i class="fas fa-arrow-left fa-2x mt-5"></i></a>
+          </div>
+          <div class="col-sm-8 mt-5 position-justify" style="text-align: center;">
+            <span><h1 >&nbsp; &nbsp;Standard Operating Procedure &nbsp;(SOP)</h1></span>
+          </div>
+          <div class="col-sm-2">
+            <img src="{% static 'adminlte/dist/img/karts2.png' %}" class="img-fluid"  style="height:100px; width:200px;">
+          </div>
+        </div>
+    </div>
+  </section>
+  <section class="content">
+      <div class="row">
+          <div class="col-12" id="accordion">
+              <div class="card card-primary card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseOne">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              1. How to enter receipt ?
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseOne" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          <p>Step 1. Click 'Receipt' on the Nav-Bar.</p>
+                          <p>Step 2. Enter Type of receipt like Water, electricity, freight etc.</p>
+                          <p>Step 3. Enter Amount.</p>
+                          <p>Step 4. Select Payment Method.</p>
+                          <p>Step 5. Give remarks like, if the recept is for freight, then mention that this receipt is for freight paid against invoice no. 254 of Farris Brothers, Dated 15th Sep. 2021.</p>
+                          <p>Step 6. Then press next.</p>
+                          <p>Step 7. This Step is important. Here, on the new page, you you will see a box displaying a serial number, put this number on the receipt you are entering with a pen only ( not pencil).</p>
+                          <p>Step 8. Scan the receipt with serial number and email it at kartsupermarket@gmail.com</p>
+                          <p>Step 9. Store the original receipt in a file or a folder for future use.</p>
+                          <p>Step 10. Thanks.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-primary card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              2. Inventory Write-off.
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseTwo" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          <p>Step 1. Click 'IWof' on the Nav-Bar.</p>
+                          <p>Step 2. Enter UPC of the item.</p>
+                          <p>Step 3. Select Event of Notice.</p>
+                          <p>Step 4. Enter pack-size like, 100 gm. or 500 ml etc.</p>
+                          <p>Step 5. Enetr quantity like 3 pcs. or 10 numbers etc.</p>
+                          <p>Step 6. Enter price of one pc. or number.</p>
+                          <p>Step 7. In remarks box please enter reason for the event and who is responsible for the same.</p>
+                          <p>Step 8. Thanks.</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-primary card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseThree">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              3. Vendor Invoice Check List
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseThree" class="collapse" data-parent="#accordion">
+                      <div class="card-body"><p>Please check following details before you send to India</p>
+                          <p>Step 1. Vendor name.</p>
+                          <p>Step 2. Item Name.</p>
+                          <p>Step 3. Vendor Item ID.</p>
+                          <p>Step 4. Item unit UPC.</p>
+                          <p>Step 5. Unit Price.</p>
+                          <p>Step 6. Pack UPC (Whichever applicable).</p>
+                          <p>Step 7. Pack Price.</p>
+                          <p>Step 8. Whatever of above info. not availabe, please arrange then send invoice or Sales Note to India office.</p>
+                          <p>Step 9. Thanks.</p>
+                      </div>
+                  </div>
+              </div>
+              <!--<div class="card card-warning card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseFour">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              4. Donec pede justo
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseFour" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-warning card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseFive">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              5. In enim justo
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseFive" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-warning card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseSix">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              6. Integer tincidunt
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseSix" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus.
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-danger card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseSeven">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              7. Aenean leo ligula
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseSeven" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-danger card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseEight">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              8. Aliquam lorem ante
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseEight" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet.
+                      </div>
+                  </div>
+              </div>
+              <div class="card card-danger card-outline">
+                  <a class="d-block w-100" data-toggle="collapse" href="#collapseNine">
+                      <div class="card-header">
+                          <h4 class="card-title w-100">
+                              9.  Quisque rutrum
+                          </h4>
+                      </div>
+                  </a>
+                  <div id="collapseNine" class="collapse" data-parent="#accordion">
+                      <div class="card-body">
+                          Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi.
+                      </div>
+                  </div>
+              </div>-->
+          </div>
+      </div>
+  </section>
+  </div>
+</div>
+
+{% endblock main %}

@@ -30,3 +30,18 @@ def user_auth(user_name, user_password):
 
 
     return verified
+
+
+def change(user_name, new_password):
+    database = db.reference('Users')
+    database = database.get()
+
+    keys_list = database.keys()
+
+    for key in keys_list:
+        if key == user_name:
+            database[key]['password'] = new_password
+        else:
+            pass
+
+    db.reference(f'Users/{key}').set(database[key])

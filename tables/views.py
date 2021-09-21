@@ -17,3 +17,10 @@ def inventory_table(request, *args, **kwargs):
         return render(request, 'inventory_table.html', ginger)
     else:
         return redirect(reverse('login'))
+
+
+def faq(request, *args, **kwargs):
+    if validate_cookie(request):
+        return render(request, 'sop.html')
+    else:
+        return redirect(reverse('login'))
