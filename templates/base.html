@@ -24,13 +24,8 @@
                   <li class="nav-item "><a href="{% url 'po' %}" class="nav-link">&nbsp;&nbsp;P.O.</a></li>
                   <li class="nav-item "><a href="{% url 'wo' %}" class="nav-link">&nbsp;&nbsp;IWOff</a></li>
                   <li class="nav-item "><a href="{% url 'receipt' %}" class="nav-link">&nbsp;&nbsp;Receipt</a></li>
-                  <li class="nav-item dropdown active">
-                     <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">&nbsp;Data Tables</a>
-                     <div class="dropdown-menu" aria-labelledby="dropdown04">
-                        <a class="dropdown-item" href="{% url 'inventory_table' %}">Inventory</a>
-                     </div>
-                  </li>
-                  <li class="nav-item "><a href="" class="nav-link">&nbsp;&nbsp;SOP</a></li>
+                  <li class="nav-item "><a href="{% url 'inventory_table' %}" class="nav-link">&nbsp;&nbsp;Inventory</a></li>
+                  <li class="nav-item "><a href="" class="nav-link">&nbsp;&nbsp;FAQ</a></li>
                   <li class="nav-item cta cta-colored"><a href="{% url 'logout' %}" class="nav-link"><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;&nbsp;Logout</a></li>
                </ul>
             </div>
