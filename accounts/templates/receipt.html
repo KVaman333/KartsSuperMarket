@@ -8,7 +8,7 @@
    <div class="container">
       <div class="row justify-content-center">
          <div class="col-xl-8 ftco-animate">
-            <form action="." class="billing-form bg-light p-3 p-md-5" method="POST" > {% csrf_token %}
+            <form action="." enctype="multipart/form-data" class=" billing-form bg-light p-3 p-md-5" method="POST" > {% csrf_token %}
                <h3 class="mb-4 billing-heading">Receipts&nbsp;<u>{{po_num}}</u></h3>
                <div class="row align-items-end">
                   <div class="col-md-6">
@@ -39,6 +39,14 @@
                      </div>
                   </div>
                   <div class="w-100"></div>
+                  <div class="col-md-12">
+                  <label for="event">Receipt</label>
+                     <label for="file-upload" class="form-control custom-file-upload">
+                        <i class="fa fa-cloud-upload fa-1x"></i>&nbsp;&nbsp;Upload Original Document
+                     </label>
+                     <input id="file-upload" type="file"/>
+                  <div class="w-100"></div>
+                  <br>
                   <div class="col-md-12">
                      <div class="form-group d-flex">
                         <input name="remarks" type="text" class="form-control" placeholder="Remarks" required>

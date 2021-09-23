@@ -1,4 +1,5 @@
-from firebase_admin import db
+from django.core.files.storage import default_storage
+from firebase_admin import db, storage
 from time import time
 
 
@@ -39,10 +40,23 @@ def get_receipt_id():
     return id
 
 
-def add_receipts(user, name, amount, pay, remarks):
+def add_receipt_file(file_name, file_path):
+    bucket = storage.bucket()
+
+    blob = bucket.blob(file_name)
+    blob.upload_from_filename(file_path)
+
+
+def add_receipts(user, name, amount, pay, remarks, file_name):
     epoch = round(time())
 
     receiptID = get_receipt_id()
+
+    file = file_name.split('.')[-1]
+    file = f'{receiptID}.{file}'
+
+    add_receipt_file(file, f'media/{file_name}')
+    default_storage.delete(file_name)
 
     data = {
         'Payment-Method': pay,
@@ -51,6 +65,7 @@ def add_receipts(user, name, amount, pay, remarks):
         'Receipt-Name'  : name,
         'Remarks'       : remarks,
         'epoch'         : epoch,
+        'File-Name'     : file_name,
         'user'          : user,
     }
 

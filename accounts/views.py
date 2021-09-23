@@ -1,4 +1,5 @@
-from functions.accounts import add_receipts, add_wo, get_receipt_id
+from django.core.files.storage import default_storage
+from functions.accounts import add_receipt_file, add_receipts, add_wo, get_receipt_id
 from functions.authentication import validate_cookie, get_cookie_user
 from django.shortcuts import render, redirect
 from django.urls      import reverse
@@ -25,8 +26,10 @@ def wo_inventory(request, *args, **kwargs):
 def receipt(request, *args, **kwargs):
     if validate_cookie(request):
         if request.method == 'POST':
-            if 'name' in request.POST and 'amount' in request.POST and 'pay' in request.POST and 'remarks' in request.POST:
-                return redirect(f"/./dashboard/accounts/receipts/add/{request.POST['name']}/{request.POST['amount']}/{request.POST['pay']}/{request.POST['remarks']}/")
+            if 'name' in request.POST and 'amount' in request.POST and 'pay' in request.POST and 'remarks' in request.POST and 'file' in request.FILES:
+                file = request.FILES['file']
+                default_storage.save(file.name, file)
+                return redirect(f"/./dashboard/accounts/receipts/add/{request.POST['name']}/{request.POST['amount']}/{request.POST['pay']}/{request.POST['remarks']}/{file.name}/")
             else:
                 ginger = {
                     'invalid_details':True,
@@ -61,7 +64,8 @@ def add_receipt(request, *args, **kwargs):
         amount  = kwargs['amount']
         pay     = kwargs['pay']
         remarks = kwargs['remarks']
-        receipt_id = add_receipts(user,name,amount,pay,remarks)
+        file_name = kwargs['file_name']
+        receipt_id = add_receipts(user,name,amount,pay,remarks,file_name)
         return redirect(f'/dashboard/accounts/receipt/confirm/{receipt_id}/')
     else:
         return redirect(reverse('login'))
