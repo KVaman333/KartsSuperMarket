@@ -81,7 +81,11 @@ def update_gr(request, *args, **kwargs):
         return redirect(reverse('login'))
 
 
-
+def notice(request, *args, **kwargs):
+    if validate_cookie(request):
+        return render(request, 'notice.html')
+    else:
+        return redirect(reverse('login'))
 
 
 

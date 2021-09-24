@@ -30,6 +30,7 @@
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-tie" aria-hidden="true"></i>&nbsp;&nbsp;{{request.COOKIES.user|capfirst}}</a>
                         <div class="dropdown-menu text-left " aria-labelledby="dropdown04">
+                           {% comment %} <a class="dropdown-item" href="{% url 'notice' %}" ><i class="fas fa-bullhorn" aria-hidden="true"></i>&nbsp;&nbsp;Notices</a> {% endcomment %}
                            <a class="dropdown-item" href="{% url 'change' %}" ><i class="fas fa-dice-d20" aria-hidden="true"></i>&nbsp;&nbsp;Change Password</a>
                            <hr>
                            <a class="dropdown-item" href="{% url 'logout' %}" ><i class="fas fa-sign-out-alt" aria-hidden="true"></i>&nbsp;&nbsp;Logout</a>

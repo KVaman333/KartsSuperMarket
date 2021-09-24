@@ -14,7 +14,7 @@ with open(f'{BASE_DIR}/KartsSuperMarket/key.txt') as file:
     SECRET_KEY = file.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ['karts-supermarket.herokuapp.com', 'www.karts-supermarket.herokuapp.com' ,'*']
 
 cred = credentials.Certificate(BASE_DIR/"KartsSuperMarket/api.json")
@@ -122,10 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",
-# ]
+# STATIC_ROOT = BASE_DIR / 'static'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
