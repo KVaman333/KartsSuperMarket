@@ -10,7 +10,7 @@
       <div class="container">
          <div class="row d-flex justify-content-center py-5">
             <div class="col-md-7 text-center heading-section ftco-animate">
-               <h1 class="big">PO Number</h1>
+               <h1 class="big">P.O. Number</h1>
                <h2>Enter P.O. Number</h2>
                <div class="row d-flex justify-content-center mt-5">
                   <div class="col-md-8">
@@ -21,6 +21,10 @@
                         </div>
                         {% if no_details %}
                         <p>Please Enter Purchase Order Number</p>
+                        {% endif %}
+
+                        {% if non_editable_po %}
+                        <p>This P.O.R. Is Not Editable</p>
                         {% endif %}
                      </form>
                   </div>

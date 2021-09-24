@@ -8,7 +8,7 @@
    <div class="container">
       <div class="row justify-content-center">
          <div class="col-xl-8 ftco-animate">
-            <form action="." class="billing-form bg-light p-3 p-md-5" method="POST" > {% csrf_token %}
+            <form action="." enctype="multipart/form-data" class="billing-form bg-light p-3 p-md-5" method="POST" > {% csrf_token %}
                <h3 class="mb-4 billing-heading">Details P.O. Number <u>{{po_num}}</U></h3>
                <div class="row align-items-end">
                   <div class="col-md-6">
@@ -38,6 +38,11 @@
                   </div>
                   <div class="w-100"></div>
                   <div class="col-md-12">
+                     <label for="event">Invoice</label>
+                        <input name="file" class="upload-box" accept=".jpg,.jpeg,.pdf" type="file" multiple/>
+                  </div>
+                  <div class="w-100"></div>
+                  <div class="col-md-12">
                      <div class="form-group">
                         <label for="Remark">Remark</label>
                         <div class="select-wrap">
@@ -56,10 +61,11 @@
                   </div>
                </div>
             </form>
+
+            <p class="text-center"><b>For merging pdf we recommend <a href="https://www.ilovepdf.com/merge_pdf" target="_blank"><u>IlovePDF</u></a></b></p>
          </div>
       </div>
    </div>
 </section>
-
 
 {% endblock main %}

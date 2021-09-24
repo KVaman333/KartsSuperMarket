@@ -10,6 +10,15 @@ def validate_cookie(request):
     else:
         return False
 
+def validate_admin(request):
+    cookie_user = request.COOKIES.get('user', None)
+    database = db.reference(f'Users/{cookie_user}/')
+    database = database.get()
+    if database['category'] == 'admin':
+        return True
+    else:
+        return False
+
 def get_cookie_user(request):
     cookie_user = request.COOKIES.get('user', None)
     return cookie_user

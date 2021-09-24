@@ -1,0 +1,129 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% load administrator %}
+
+
+{% block main %}
+
+<div>
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-">
+          <div class="col-sm-2">
+            <a href="{% url 'homepage' %}"><i class="fas fa-arrow-left fa-2x mt-5"></i></a>
+          </div>
+          <div class="col-sm-8 mt-5 position-justify" style="text-align: center;">
+            <span><h1 >&nbsp; &nbsp;Receipt Lists</h1></span>
+          </div>
+          <div class="col-sm-2">
+            <img src="{% static 'adminlte/dist/img/karts2.png' %}" class="img-fluid"  style="height:100px; width:200px;">
+          </div>
+        </div>
+    </div>
+  </section>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <!---<div class="card-header">
+              <h3 class="card-title">DataTable with default features</h3>
+              </div>-->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>Uploaded By</th>
+                    <th>Receipt ID</th>
+                    <th>Receipt Name</th>
+                    <th>Receipt Amount</th>
+                    <th>Payment Method</th>
+                    <th>Remarks</th>
+                    <th>Date/Time</th>
+                    <th>File</th>
+                  </tr>
+                </thead>
+                <tbody>
+                {% for item in database %}
+                  <tr>
+                    <td>{{item|get_user:database|safe}}</td> 
+                    <td>{{item|get_id:database|safe}}</td> 
+                    <td>{{item|get_name:database|safe}}</td> 
+                    <td>{{item|get_amount:database|safe}}</td> 
+                    <td>{{item|get_pay:database|safe}}</td>
+                    <td>{{item|get_remarks:database|safe}}</td> 
+                    <td>{{item|get_time:database|safe}}</td>
+                    <td><a href="{{item|get_path:database|safe}}" target="_blank">Open File</a></td>
+                  </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Uploaded By</th>
+                    <th>Receipt ID</th>
+                    <th>Receipt Name</th>
+                    <th>Receipt Amount</th>
+                    <th>Payment Method</th>
+                    <th>Remarks</th>
+                    <th>Date/Time</th>
+                    <th>File</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+
+{% endblock main %}
+
+
+{% block admin_script %}
+
+  {% if admin_user %}
+
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+    </script>
+
+  {% else %}
+
+    <script>
+      $(function () {
+        $("#example1").DataTable({
+          "responsive": true, "lengthChange": false, "autoWidth": false,
+        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+        $('#example2').DataTable({
+          "paging": true,
+          "lengthChange": false,
+          "searching": false,
+          "ordering": true,
+          "info": true,
+          "autoWidth": false,
+          "responsive": true,
+        });
+      });
+    </script>
+
+  {% endif %}
+
+{% endblock admin_script %}
+

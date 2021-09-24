@@ -2,6 +2,7 @@
 <html lang="en">
    <head>
       {% load static %}
+      {% load authentication %}
       <title>Karts Supermarket</title>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -27,6 +28,15 @@
                   <li class="nav-item "><a href="{% url 'receipt' %}" class="nav-link">&nbsp;&nbsp;Receipt</a></li>
                   <li class="nav-item "><a href="{% url 'inventory_table' %}" class="nav-link">&nbsp;&nbsp;Inventory</a></li>
                   <li class="nav-item "><a href="{% url 'faq' %}" class="nav-link">&nbsp;&nbsp;SOP</a></li>
+                  {% if request.COOKIES.user|is_admin %}
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-shield" aria-hidden="true"></i>&nbsp;&nbsp;Admin</a>
+                        <div class="dropdown-menu text-left " aria-labelledby="dropdown04">
+                           <a class="dropdown-item" href="{% url 'view_receipt' %}" ><i class="fas fa-database" aria-hidden="true"></i>&nbsp;&nbsp;Receipts</a>
+                           <hr>
+                        </div>
+                     </li>
+                  {% endif %}
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-tie" aria-hidden="true"></i>&nbsp;&nbsp;{{request.COOKIES.user|capfirst}}</a>
                         <div class="dropdown-menu text-left " aria-labelledby="dropdown04">

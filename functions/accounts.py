@@ -43,8 +43,11 @@ def get_receipt_id():
 def add_receipt_file(file_name, file_path):
     bucket = storage.bucket()
 
-    blob = bucket.blob(file_name)
+    blob = bucket.blob(f'receipts/{file_name}')
     blob.upload_from_filename(file_path)
+    blob.make_public()
+
+    return blob.public_url
 
 
 def add_receipts(user, name, amount, pay, remarks, file_name):
@@ -55,7 +58,7 @@ def add_receipts(user, name, amount, pay, remarks, file_name):
     file = file_name.split('.')[-1]
     file = f'{receiptID}.{file}'
 
-    add_receipt_file(file, f'media/{file_name}')
+    path = add_receipt_file(file, f'media/{file_name}')
     default_storage.delete(file_name)
 
     data = {
@@ -65,7 +68,7 @@ def add_receipts(user, name, amount, pay, remarks, file_name):
         'Receipt-Name'  : name,
         'Remarks'       : remarks,
         'epoch'         : epoch,
-        'File-Name'     : file_name,
+        'File-Path'     : path,
         'user'          : user,
     }
 
