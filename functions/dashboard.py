@@ -78,13 +78,13 @@ def editable_po(po_num):
     keys_list = database.keys()
 
     valid     = False
-    po_amount = ''
-    vendor    = ''
 
     for key_org in keys_list:
         key = key_org.split(':')
         key = key[-1]
         if key == po_num and database[key_org]['invoiceno'] == '':
-            return True
+            valid = True
         else:
-            return False
+            pass
+
+    return valid
