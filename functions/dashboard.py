@@ -84,7 +84,7 @@ def editable_po(po_num):
     for key_org in keys_list:
         key = key_org.split(':')
         key = key[-1]
-        if key == po_num and database[key_org]['invoiceamt'] == '' and database[key_org]['invoiceno'] == '' and database[key_org]['invoiceremark'] == '':
+        if key == po_num and database[key_org]['invoiceno'] == '':
             return True
         else:
             return False
