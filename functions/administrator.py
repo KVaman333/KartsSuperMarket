@@ -27,3 +27,49 @@ def get_invoices():
 
     return database
 
+
+def add_inventory_item(stock_locator, item_order, description, sub_description, vendor_id, unit_upc, pack_upc, buy, sell, qty, department):
+    database = db.reference('Inventory/Stock/')
+    database = database.get()
+
+    keys_list = database.keys()
+
+
+    if len(stock_locator) == 1:stock_locator = f'000{stock_locator}'
+    elif len(stock_locator) == 2:stock_locator = f'00{stock_locator}'
+    elif len(stock_locator) == 3:stock_locator = f'0{stock_locator}'
+    else:pass
+
+    if stock_locator not in keys_list:
+        data = {
+            'STOCK LOCATOR'  : stock_locator,
+            'ITEM ORDER'     : item_order,
+            'DESCRIPTION'    : description,
+            'SUB-DESCRIPTION': sub_description,
+            'VENDOR ID'      : vendor_id,
+            'UNIT UPC'       : unit_upc,
+            'PACK UPC'       : pack_upc,
+            'PRICE BUY'      : buy,
+            'PRICE SELL'     : sell,
+            'QTY'            : qty,
+            'DEPARTMENT'     : department,
+        }
+
+
+        db.reference(f'Inventory/Test/{stock_locator}/').set(data)
+
+        return True
+    else:
+        return False
+
+
+def lastStockLocator():
+    database = db.reference('Inventory/Stock/')
+    database = database.get()
+
+    keys_list = database.keys()
+
+    for i in keys_list: i = keys_list
+
+    return 
+

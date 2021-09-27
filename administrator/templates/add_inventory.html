@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 ftco-animate">
+        <form id="entryform" action="." class="billing-form bg-light p-3 p-md-5" method="POST" >
+          {% csrf_token %}
+          <h3 class="mb-4 billing-heading">Add Inventory<u></u></h3>
+          <div class="row align-items-end">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Number">Stock Locator</label>
+                <input id="stock_locator" name="stock_locator" type="number" value="{{stock_locator}}" class="form-control" placeholder="Location" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Number">Item Order</label>
+                <input id="item_order" name="item_order" type="text" value="{{item_order}}" class="form-control" placeholder="Order" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="Invoice Number">Description</label>
+                <input id="description" name="description" type="text" value="{{description}}" class="form-control" placeholder="Description" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Amount">Sub Description</label>
+                <input id="sub_description" name="sub_description" type="text" value="{{sub_description}}" class="form-control" placeholder="Sub Description" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Amount">Vendor ID</label>
+                <input id="vendor_id" name="vendor_id" type="text" value="{{vendor_id}}" class="form-control" placeholder="ID" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Amount">Unit UPC</label>
+                <input id="unit_upc" name="unit_upc" type="text" value="{{unit_upc}}" class="form-control" placeholder="Amount" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Amount">Pack UPC</label>
+                <input id="pack_upc" name="pack_upc" type="text" value="{{pack_upc}}" class="form-control" placeholder="Amount" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Amount">Price Buy</label>
+                <input id="buy" name="buy" type="number" value="{{buy}}" step="0.01" class="form-control" placeholder="Amount" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Amount">Price Sell</label>
+                <input id="sell" name="sell" type="number" value="{{sell}}" step="0.01" class="form-control" placeholder="Amount" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Invoice Amount">Quantity</label>
+                <input id="qty" name="qty" type="number" value="{{qty}}" class="form-control" placeholder="QTY" required>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group d-flex">
+                <input id="department" name="department" type="text" value="{{department}}" class="form-control" placeholder="Department">
+                <input type="submit" value="Submit" class="submit px-3"/>
+              </div>
+            <div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if invalid_details %}
+  <script>
+    window.onload = function exampleFunction() {custom_alert("Warning !","Details Not Complete !", "warning", 1200)}
+  </script>
+{% endif %}
+{% if correct_details %}
+  <script>
+    window.onload = function exampleFunction() {correct()}
+  </script>
+{% endif %}
+{% if invalid_locator %}
+  <script>
+    window.onload = function exampleFunction() {custom_alert("Error !","Stock Locator Number Already Exists !", "error", 3000)}
+  </script>
+{% endif %}
+
+
+
+{% endblock main %}
