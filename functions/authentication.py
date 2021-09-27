@@ -42,15 +42,9 @@ def user_auth(user_name, user_password):
 
 
 def change(user_name, new_password):
-    database = db.reference('Users')
+    database = db.reference(f'Users/{user_name}/')
     database = database.get()
 
-    keys_list = database.keys()
+    database['password'] = new_password
 
-    for key in keys_list:
-        if key == user_name:
-            database[key]['password'] = new_password
-        else:
-            pass
-
-    db.reference(f'Users/{key}').set(database[key])
+    db.reference(f'Users/{user_name}/').set(database)
