@@ -63,13 +63,11 @@ def add_inventory_item(stock_locator, item_order, description, sub_description, 
         return False
 
 
-def lastStockLocator():
-    database = db.reference('Inventory/Stock/')
-    database = database.get()
-
-    keys_list = database.keys()
-
-    for i in keys_list: i = keys_list
-
-    return 
-
+def except_pack_upc(request): 
+    response = False
+    for i in request.POST:
+        if i != 'pack_upc' and request.POST[i] != '':
+            response = True
+        else:
+            pass
+    return response
