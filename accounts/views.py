@@ -1,7 +1,8 @@
 from django.core.files.storage import default_storage
-from functions.accounts import add_receipt_file, add_receipts, add_wo, get_receipt_id
-from functions.authentication import validate_cookie, get_cookie_user
-from django.shortcuts import render, redirect
+from django.template.loader import get_template
+from functions.accounts import add_pc, add_receipt_file, add_receipts, add_wo, get_receipt_id
+from functions.authentication import validate_cookie, get_cookie_user, if_empty, get_time
+from django.shortcuts import render, redirect, HttpResponse
 from django.urls      import reverse
 
 #  ACCOUNTS VIEWS  #
@@ -12,7 +13,6 @@ def wo_inventory(request, *args, **kwargs):
             if 'event' in request.POST and 'name' in request.POST and 'upc' in request.POST and 'size' in request.POST and 'quantity' in request.POST and 'prize' in request.POST and 'remarks' in request.POST:
                 return redirect(f"/./dashboard/accounts/write-off-inventory/add/{request.POST['event']}/{request.POST['name']}/{request.POST['upc']}/{request.POST['size']}/{request.POST['quantity']}/{request.POST['prize']}/{request.POST['remarks']}/")
             else:
-                print(request.POST)
                 ginger = {
                     'invalid_details':True,
                 }
@@ -82,5 +82,59 @@ def receipt_id_con(request, *args, **kwargs):
                 return render(request, 'receipt_id_confirm.html', ginger)
             else:
                 return redirect(reverse('receipt'))
+    else:
+        return redirect(reverse('login'))
+
+
+def petty_cash(request, *args, **kwargs):
+    if validate_cookie(request):
+        if request.method == 'POST':
+            if all(item in request.POST for item in ['amount', 'account', 'to', 'by', 'remarks']):
+                return redirect(f"/./dashboard/accounts/add-petty-cash/{request.POST['amount']}/{request.POST['account']}/{request.POST['to']}/{request.POST['by']}/{request.POST['remarks']}/")
+            else:
+                ginger = {
+                    'invalid_datails': True,
+                }
+                return render(request, 'petty_cash.html', ginger)
+        else:
+            return render(request, 'petty_cash.html')
+    else:
+        return redirect(reverse('login'))
+
+def add_petty_cash(request, *args, **kwargs):
+    if validate_cookie(request):
+        if 'HTTP_REFERER' in request.META and request.META['HTTP_REFERER'] == 'http://192.168.29.90:8000/dashboard/accounts/petty-cash/':
+            amount  = kwargs['amount']
+            account = kwargs['account']
+            to      = kwargs['to']
+            by      = kwargs['by']
+            remarks = kwargs['remarks']
+            user    = get_cookie_user(request)
+
+            id = add_pc(amount, account, to, by, remarks, user)
+
+            return redirect(f"/./dashboard/accounts/petty-cash-pdf/{id}/{amount}/{account}/{to}/{by}/")
+        else:
+            return redirect(reverse('petty_cash'))
+    else:
+        return redirect(reverse('login'))
+
+def petty_cash_pdf(request, *args, **kwargs):
+    if validate_cookie(request):
+        number      = kwargs['number']
+        amount  = kwargs['amount']
+        account = kwargs['account']
+        to      = kwargs['to']
+        by      = kwargs['by']
+
+        ginger = {
+            'amount' : amount,
+            'account': account,
+            'to'     : to,
+            'by'     : by,
+            'number' : number,
+            'date'   : get_time('date')
+        }
+        return render(request, 'petty_cash_pdf.html', ginger)
     else:
         return redirect(reverse('login'))

@@ -77,3 +77,34 @@ def add_receipts(user, name, amount, pay, remarks, file_name):
 
     return receiptID
 
+
+def add_pc(amount, account, to, by, remarks, user):
+    epoch = round(time())
+
+    database = db.reference('Accounts/Petty-Cash/')
+    database = database.get()
+
+    keys_list = database.keys()
+
+    id = None
+
+    for key in keys_list: id = key
+
+    if id == 'aaaa-aaaa-aaaa': id = '10000'
+    else: id = str(int(id.split('-')[-1]) + 1)
+
+    data = {
+        'id'      : id,
+        'to'      : to,
+        'by'      : by,
+        'user'    : user,
+        'epoch'   : epoch,
+        'Amount'  : amount,
+        'Remarks' : remarks,
+        'Account' : account,
+    }
+
+    db.reference(f'Accounts/Petty-Cash/{user}-{epoch}-{id}').set(data)
+
+    return id
+

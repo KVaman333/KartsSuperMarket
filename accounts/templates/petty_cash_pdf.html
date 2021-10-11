@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    <title>Karts Supermarket</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.ico' %}">
+    <style>
+      body {
+      font-family: Arial;
+      }
+      .coupon {
+      border: 5px dotted #bbb;
+      width: 80%;
+      border-radius: 15px;
+      margin: 0 auto;
+      max-width: 500px;
+      }
+      .container {
+      padding: 2px 16px;
+      background-color: #f1f1f1;
+      }
+      .promo {
+      background: #ccc;
+      padding: 3px;
+      }
+      .cname {
+      color: blue;
+      padding: 3px;
+      }
+      .expire {
+      color: black;
+      padding: 3px;
+      }
+      .expire2 {
+      color: black;
+      padding-left:23px;
+      }
+      .expire3 {
+      color: black;
+      padding-left:23px;
+      }
+      .expire4 {
+      color: black;
+      padding-left:20px;
+      }
+      .date {
+      color: black;
+      padding-left: 15px;
+      }
+      .date2 {
+      color: black;
+      padding-left: 150px;
+      }
+      .paid {
+      color: red;
+      padding-left: 10px;
+      }
+      .paid2 {
+      color: red;
+      padding-left: 10px;
+      }
+      .paid3 {
+      color: red;
+      padding-left: 32px;
+      }
+      .paid4 {
+      color: red;
+      padding-left: 20px;
+      }
+      .column {
+      float: left;
+      width: 45%;
+      padding: 10px;
+      padding-bottom: 15px;
+      height: 30px; /* Should be removed. Only for demonstration */
+      }
+      /* Clear floats after the columns */
+      .row:after {
+      content: "";
+      display: table;
+      clear: both;
+      }
+    </style>
+    <style>
+      @media print {
+        .print-container, print-container * {
+          visibility: hidden;
+        }
+        body {
+          margin-top: 40%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="coupon">
+      <div class="container">
+        <h3><span class="cname"><img src="{% static 'adminlte/dist/img/karts2.png' %}" alt="Avatar" style="width:25%;"></span></h3>
+      </div>
+      <span class="date"> Date <span class="date">: <u>{{date}}</u></span> </span><span class="date2"> Number<span class="date">: {{number}}</span>  </span>
+      <!--<img src="https://www.kiki-furniture.com/cms/userfiles/files/Instore-Coupon-50off(1).png" alt="Avatar" style="width:100%;">-->
+      <div class="container" style="background-color:white; text-align: center;">
+        <h2><b>Petty Cash Voucher</b></h2>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p class="expire">Amount<span class="paid">&nbsp;<b>:&nbsp;$ {{amount}}</b></span> </p>
+        </div>
+        <div class="column">
+          <p class="expire4">Charge A/c<span class="paid2"><b>:&nbsp;{{account}}</b></span> </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="column">
+          <p class="expire">Paid to<span class="paid4"><b>:&nbsp;{{to}}</b></span> </p>
+        </div>
+        <div class="column">
+          <p class="expire3">Paid by<span class="paid3"><b>:&nbsp;{{by}}</b></span> </p>
+        </div>
+      </div>
+      <br><br>
+      <div class="row">
+        <div class="column">
+          <p class="expire">Approved by : __________</p>
+        </div>
+        <div class="column">
+          <p class="expire2">Received by : __________</p>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="print-container" style="padding-left: 32%">
+      <a href="{% url 'petty_cash' %}"><button>Back</button></a>
+        <span style="padding-left: 43%"></span>
+      <button onclick="window.print();">Print</button>
+    </div>
+  </body>
+</html>

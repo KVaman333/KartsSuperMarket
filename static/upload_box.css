@@ -22,7 +22,12 @@
 
 
 
-
+#rcorners2 {
+    border-radius: 25px;
+    border: 2px solid #468309;
+    padding: 20px;
+    width: 70%;
+  }
 
 
 

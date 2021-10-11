@@ -1,5 +1,5 @@
 from firebase_admin import db
-
+import time
 
 
 
@@ -48,3 +48,24 @@ def change(user_name, new_password):
     database['password'] = new_password
 
     db.reference(f'Users/{user_name}/').set(database)
+
+
+def if_empty(value, substitute):
+    if value != None and value != '':
+        return value
+    else:
+        return substitute
+
+
+def get_time(command):
+    epoch = time.localtime()
+    if command == 'year':
+        return epoch.tm_year
+    elif command == 'month':
+        return epoch.tm_mon
+    elif command == 'mday':
+        return epoch.tm_mday
+    elif command == 'date':
+        return f'{epoch.tm_mon}-{epoch.tm_mday}-{epoch.tm_year}'
+    else:
+        return epoch

@@ -16,7 +16,7 @@ def gr_get(po_num):
 
     for key_org in keys_list:
         key = key_org.split(':')
-        key = key[-1]
+        key = str(int(key[-1]))
         if key == po_num:
             valid     = True
             po_amount = database[key_org]['poamount']
@@ -40,7 +40,7 @@ def add_invoice_file(file_name, file_path):
     return blob.public_url
 
 
-def update_goods_receipt(po_num, invoice_amt, invoice_no, remark, file_name):
+def update_goods_receipt(po_num, invoice_amt, invoice_no, remark, file_name, user):
 
     database = db.reference('Orders')
     database = database.get()
@@ -49,7 +49,7 @@ def update_goods_receipt(po_num, invoice_amt, invoice_no, remark, file_name):
 
     for key_org in keys_list:
         key = key_org.split(':')
-        key = key[-1]
+        key = str(int(key[-1]))
         if key == po_num:
             database = db.reference(f'Orders/{key_org}/')
             database = database.get()
@@ -64,8 +64,10 @@ def update_goods_receipt(po_num, invoice_amt, invoice_no, remark, file_name):
             database['invoiceno']     = invoice_no
             database['invoiceremark'] = remark
             database['file-path']     = path
+            database['receivedby']    = user
 
             db.reference(f'Orders/{key_org}/').set(database)
+            break
             
         else:
             pass
@@ -76,14 +78,14 @@ def editable_po(po_num):
     database = database.get()
 
     keys_list = database.keys()
-
     valid     = False
 
     for key_org in keys_list:
         key = key_org.split(':')
-        key = key[-1]
+        key = str(int(key[-1]))
         if key == po_num and database[key_org]['invoiceno'] == '':
             valid = True
+            break
         else:
             pass
 

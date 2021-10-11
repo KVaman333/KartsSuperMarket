@@ -1,7 +1,7 @@
-from functions.administrator import add_inventory_item, get_invoices, get_receipts, except_pack_upc
+from functions.administrator  import add_inventory_item, get_invoices, get_receipts, except_pack_upc
 from functions.authentication import validate_cookie, validate_admin
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls      import reverse
 
 # Create your views here.
 
@@ -28,7 +28,7 @@ def view_invoice(request, *args, **kwargs):
                 'admin_user': True,
                 'database'  : database,
             }
-            return render(request, 'view_receipts.html', ginger)
+            return render(request, 'view_invoices.html', ginger)
         else:
             return redirect(reverse('homepage'))
     else:
@@ -78,7 +78,6 @@ def add_inventory(request, *args, **kwargs):
                         }
                         return render(request, 'add_inventory.html', ginger)
                 else:
-                    print('invalid_locator')
                     ginger ={
                         'invalid_details': True,
                     }

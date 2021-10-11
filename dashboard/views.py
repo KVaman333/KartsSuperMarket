@@ -1,5 +1,5 @@
 from django.core.files.storage import default_storage
-from functions.authentication  import validate_cookie
+from functions.authentication  import get_cookie_user, validate_cookie
 from functions.dashboard       import editable_po, gr_get, update_goods_receipt
 from django.shortcuts import redirect, render
 from django.urls      import reverse
@@ -46,7 +46,7 @@ def good_receipt(request, *args, **kwargs):
 
                 valid, po_amount, vendor = gr_get(po_num)
 
-                if valid and editable_po(po_num):
+                if editable_po(po_num):
                     ginger = {
                         'logged_in': True,
                         'po_num'   : po_num,
@@ -63,14 +63,14 @@ def good_receipt(request, *args, **kwargs):
                 invoice_no  = request.POST['invoice_no']
                 remark      = request.POST['remark']
                 file        = request.FILES['file']
+                user        = get_cookie_user(request)
                 default_storage.save(file.name, file)
                 po_num      = request.path
                 po_num      = po_num.split('/')
                 po_num      = po_num[-2]
 
-                return redirect(f"/./dashboard/update-goods-receipt/{po_num}/{invoice_amt}/{invoice_no}/{remark}/{file.name}/")
+                return redirect(f"/./dashboard/update-goods-receipt/{po_num}/{invoice_amt}/{invoice_no}/{remark}/{file.name}/{user}/")
             else:
-                print('Here')
                 return redirect(request.path)
     else:
         return redirect(reverse('login'))
@@ -83,9 +83,10 @@ def update_gr(request, *args, **kwargs):
             invoice_amt = kwargs['invoice_amt']
             invoice_no  = kwargs['invoice_no']
             file        = kwargs['file']
+            user        = kwargs['user']
             remark      = kwargs['remark']
             if editable_po(po_num):
-                update_goods_receipt(po_num, invoice_amt, invoice_no, remark, file)
+                update_goods_receipt(po_num, invoice_amt, invoice_no, remark, file, user)
 
             return redirect(reverse('po'))
         else:

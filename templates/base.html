@@ -14,6 +14,10 @@
       <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
    </head>
+   <style>
+   {% block styles %}
+   {% endblock styles %}
+   </style>
    <body >
       <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-light-1" id="ftco-navbar">
          <div class="container">
@@ -23,17 +27,23 @@
             </button>
             <div class="collapse navbar-collapse" id="ftco-nav">
                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item "><a href="{% url 'homepage' %}" class="nav-link">&nbsp;&nbsp;Home</a></li>
                   <li class="nav-item "><a href="{% url 'po' %}" class="nav-link">&nbsp;&nbsp;P.O.R.</a></li>
-                  <li class="nav-item "><a href="{% url 'wo' %}" class="nav-link">&nbsp;&nbsp;IWOff</a></li>
-                  <li class="nav-item "><a href="{% url 'receipt' %}" class="nav-link">&nbsp;&nbsp;Receipt</a></li>
                   <li class="nav-item "><a href="{% url 'inventory_table' %}" class="nav-link">&nbsp;&nbsp;Inventory</a></li>
                   <li class="nav-item "><a href="{% url 'faq' %}" class="nav-link">&nbsp;&nbsp;SOP</a></li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-book" aria-hidden="true"></i>&nbsp;&nbsp;Accounts</a>
+                     <div class="dropdown-menu text-left " aria-labelledby="dropdown04">
+                        <a class="dropdown-item" href="{% url 'wo' %}" ><i class="fas fa-money-bill-wave" aria-hidden="true"></i>&nbsp;&nbsp;IWOff</a>
+                        <a class="dropdown-item" href="{% url 'receipt' %}" ><i class="fas fa-cash-register" aria-hidden="true"></i>&nbsp;&nbsp;Receipt</a>
+                        <a class="dropdown-item" href="{% url 'petty_cash' %}" ><i class="fas fa-money-bill" aria-hidden="true"></i>&nbsp;&nbsp;Petty Cash</a>
+                     </div>
+                  </li>
                   {% if request.COOKIES.user|is_admin %}
                      <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-shield" aria-hidden="true"></i>&nbsp;&nbsp;Admin</a>
                         <div class="dropdown-menu text-left " aria-labelledby="dropdown04">
                            <a class="dropdown-item" href="{% url 'view_receipt' %}" ><i class="fas fa-database" aria-hidden="true"></i>&nbsp;&nbsp;Receipts</a>
+                           <a class="dropdown-item" href="{% url 'view_invoices' %}" ><i class="fas fa-database" aria-hidden="true"></i>&nbsp;&nbsp;Invoices</a>
                            <a class="dropdown-item" href="{% url 'add_inventory' %}" ><i class="fas fa-database" aria-hidden="true"></i>&nbsp;&nbsp;Add inventory Items</a>
                         </div>
                      </li>
