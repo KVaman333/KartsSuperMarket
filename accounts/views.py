@@ -103,7 +103,7 @@ def petty_cash(request, *args, **kwargs):
 
 def add_petty_cash(request, *args, **kwargs):
     if validate_cookie(request):
-        if 'HTTP_REFERER' in request.META and request.META['HTTP_REFERER'] == 'http://192.168.29.90:8000/dashboard/accounts/petty-cash/':
+        if 'HTTP_REFERER' in request.META and request.META['HTTP_REFERER'] == 'http://192.168.29.90:8000/dashboard/accounts/petty-cash/' or request.META['HTTP_REFERER'] == 'https://karts-supermarket.herokuapp.com/dashboard/accounts/petty-cash/'or request.META['HTTP_REFERER'] == 'http://karts-supermarket.herokuapp.com/dashboard/accounts/petty-cash/':
             amount  = kwargs['amount']
             account = kwargs['account']
             to      = kwargs['to']
