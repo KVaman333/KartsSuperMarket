@@ -7,7 +7,7 @@ def get_receipts():
     database = db.reference('Accounts/Receipts/')
     database = database.get()
 
-    del database['aaaa-aaaa-aaaa']
+    del database['0000-0000-0000']
 
     return database
 

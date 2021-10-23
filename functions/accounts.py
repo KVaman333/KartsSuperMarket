@@ -34,7 +34,7 @@ def get_receipt_id():
 
     for key in keys_list: id = key
 
-    if id == 'aaaa-aaaa-aaaa': id = '10000'
+    if id == '0000-0000-0000': id = '10000'
     else: id = str(int(id.split('-')[-1]) + 1)
 
     return id
@@ -73,7 +73,7 @@ def add_receipts(user, name, amount, pay, remarks, file_name):
     }
 
 
-    db.reference(f'Accounts/Receipts/{user}-{epoch}-{receiptID}/').set(data)
+    db.reference(f'Accounts/Receipts/{epoch}-{receiptID}/').set(data)
 
     return receiptID
 
@@ -90,7 +90,7 @@ def add_pc(amount, account, to, by, remarks, user):
 
     for key in keys_list: id = key
 
-    if id == 'aaaa-aaaa-aaaa': id = '10000'
+    if id == '0000-0000-0000': id = '10000'
     else: id = str(int(id.split('-')[-1]) + 1)
 
     data = {
@@ -104,7 +104,7 @@ def add_pc(amount, account, to, by, remarks, user):
         'Account' : account,
     }
 
-    db.reference(f'Accounts/Petty-Cash/{user}-{epoch}-{id}').set(data)
+    db.reference(f'Accounts/Petty-Cash/{epoch}-{id}').set(data)
 
     return id
 
