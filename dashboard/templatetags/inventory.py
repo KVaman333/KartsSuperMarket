@@ -56,3 +56,21 @@ def get_pack_upc(item, database):
     return sell
 
 
+#  CLASSES FILTERS  #
+
+@register.filter(name="department")
+def department(item, database):
+    return database[item]['DEPARTMENT']
+
+@register.filter(name="sub_department")
+def sub_department(item, database):
+    return database[item]['SUB-DEPARTMENT']
+
+@register.filter(name="category")
+def category(item, database):
+    return database[item]['CATEGORY']
+
+@register.filter(name="id")
+def idd(item, database):
+    return database[item]['ID']
+

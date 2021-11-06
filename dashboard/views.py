@@ -1,6 +1,6 @@
 from django.core.files.storage import default_storage
 from functions.authentication  import get_cookie_user, validate_cookie
-from functions.dashboard       import editable_po, gr_get, update_goods_receipt
+from functions.dashboard       import editable_po, get_notices, gr_get, update_goods_receipt
 from django.shortcuts import redirect, render
 from django.urls      import reverse
 
@@ -8,14 +8,14 @@ from django.urls      import reverse
 
 def homepage(request, *args, **kwargs):
     if validate_cookie(request):
-        return render(request, 'homepage.html')
+        return redirect(reverse('notice'))
     else:
         return redirect(reverse('login'))
 
 def enter_po(request, *args, **kwargs):
     if validate_cookie(request):
         if request.method == 'POST':
-            if 'po_num' in request.POST:
+            if 'po_num' in request.POST and request.POST['po_num'] != "":
                 po_num = request.POST['po_num']
                 if editable_po(po_num):
                     return redirect(f"/./dashboard/goods-receipt/{po_num}/")
@@ -57,7 +57,7 @@ def good_receipt(request, *args, **kwargs):
                 else:
                     return redirect(reverse('po'))
         else:
-            if 'invoice_amt' in request.POST and 'invoice_no' in request.POST and 'remark' in request.POST and 'file' in request.FILES and 'invoice_amt' != '' and 'invoice_no' != '':
+            if all(item in request.POST and item != "" for item in ['invoice_amt', 'invoice_no', 'remark']) and 'file' in request.FILES:
 
                 invoice_amt = request.POST['invoice_amt']
                 invoice_no  = request.POST['invoice_no']
@@ -78,7 +78,7 @@ def good_receipt(request, *args, **kwargs):
 
 def update_gr(request, *args, **kwargs):
     if validate_cookie(request):
-        if 'po_num' in kwargs and 'invoice_amt' in kwargs and 'invoice_no' in kwargs and 'remark' in kwargs and 'file' in kwargs:
+        if all(item in kwargs and item != "" for item in ['po_num', 'invoice_amt', 'invoice_no', 'remark', 'file', 'user']):
             po_num      = kwargs['po_num']
             invoice_amt = kwargs['invoice_amt']
             invoice_no  = kwargs['invoice_no']
@@ -88,26 +88,25 @@ def update_gr(request, *args, **kwargs):
             if editable_po(po_num):
                 update_goods_receipt(po_num, invoice_amt, invoice_no, remark, file, user)
 
-            return redirect(reverse('po'))
+            return redirect(reverse('homepage'))
         else:
-            return redirect(reverse('po'))
+            return redirect(reverse('homepage'))
     else:
         return redirect(reverse('login'))
 
 
 def notice(request, *args, **kwargs):
     if validate_cookie(request):
-        return render(request, 'notice.html')
+        user        = get_cookie_user(request)
+        database    = get_notices(user)
+        notice_list = list(database.keys())
+        notice_list.reverse()
+
+        ginger = {
+            'notices' : notice_list,
+            'database': database,
+        }
+        return render(request, 'notice.html', ginger)
     else:
         return redirect(reverse('login'))
 
-
-
-
-
-
-
-def error404_handler(request, *args, **kwargs):
-    return render(request, '404_dh.html')
-def error500_handler(request, *args, **kwargs):
-    return render(request, '500_dh.html')

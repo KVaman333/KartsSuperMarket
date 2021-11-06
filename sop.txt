@@ -1,0 +1,188 @@
+1. How to enter receipt ?
+
+Step 1. Click 'Receipt' on the Nav-Bar.
+
+Step 2. Enter Type of receipt like Water, electricity, freight etc.
+
+Step 3. Enter Amount.
+
+Step 4. Select Payment Method.
+
+Step 5. Give remarks like, if the recept is for freight, then mention that this receipt is for freight paid against invoice no. 254 of Farris Brothers, Dated 15th Sep. 2021.
+
+Step 6. Then press next.
+
+Step 7. This Step is important. Here, on the new page, you you will see a box displaying a serial number, put this number on the receipt you are entering with a pen only ( not pencil).
+
+Step 8. Scan the receipt with serial number and email it at kartsupermarket@gmail.com
+
+Step 9. Store the original receipt in a file or a folder for future use.
+
+Step 10. Thanks.
+
+
+
+ 2. Inventory Write-off.
+
+Step 1. Click 'IWof' on the Nav-Bar.
+
+Step 2. Enter UPC of the item.
+
+Step 3. Select Event of Notice.
+
+Step 4. Enter pack-size like, 100 gm. or 500 ml etc.
+
+Step 5. Enetr quantity like 3 pcs. or 10 numbers etc.
+
+Step 6. Enter price of one pc. or number.
+
+Step 7. In remarks box please enter reason for the event and who is responsible for the same.
+
+Step 8. Thanks.
+
+
+3. Vendor Invoice Check List
+
+Please check following details before you send to India
+
+Step 1. Vendor name.
+
+Step 2. Item Name.
+
+Step 3. Vendor Item ID.
+
+Step 4. Item unit UPC.
+
+Step 5. Unit Price.
+
+Step 6. Pack UPC (Whichever applicable).
+
+Step 7. Pack Price.
+
+Step 8. Whatever of above info. not availabe, please arrange then send invoice or Sales Note to India office.
+
+Step 9. Thanks.
+
+
+
+4. Inter Store Stock Transfer
+
+Please check following details before you transfer stocks to another store
+
+Step 1. No stock should leave without Mr. Sam or Mr Vipin's written permission.
+
+Step 2. No item is permitted for transfer without UPC.
+
+Step 3. All stock transfers will be on a written Stock transfer format. And will be performed by an authorised "Dispatcher" only.
+
+Step 4. Stock transfer format will be signed and verified by atleast two personal, one counting and dispatching the stocks(called as "Dispatcher"), second authorizing the dispatch (called as "Verifier" like Mr. Sam, his father Mr. Yograj, Mr. Nick or Ms. Heather. *Counting or Dispatching and Authorizing persons cann't be the same.
+
+Step 5. Any dispatch without UPC will be considered as Stock loss and dispatcher will be held responsible for the loss and will be liable for loss recoveries in toto.
+
+Step 6. Any stock discrepencies after arrival at the destination, unless proved lost during transit, dispatcher will be held responsible for the losses and will be liable for recoveries.
+
+Step 7. Any Breakage, Damage or Pilferage of Goods during transit, Dispatcher will not be held responsible unless Breakage, Damage or Pilferage is due to negligence during packing of such goods and proper placement in the carrier vehicle and proper closing and locking of the carrier vehicle.
+
+Step 8. It is Dispatcher's responsibility to confirm documented delivery of Goods at delivery destination(s).
+
+Step 9. Thanks.
+
+
+
+5. Point of Sale Pledges:
+
+Please check following details before you transfer stocks to another store
+
+Step 1. No item price over-riding are permitted without Mr. Sam or Mr Vipin's written permission. Else will considered as Fraud or Theft of company property and will be punishable by law and for financial recoveries.
+
+Step 2. For all items which don't ring up by UPC and are being sold as unlisted, manual records has tobe maintained for Item name, pack size, quantity and price. If there is a rush hour, ask for somebody's help and must take pictures of the item(s) being sold for item's name and barcode. Any negligence is liable for financial penalities upto total cost of the items sold.
+
+Step 3. It is mandatory for all cashiers (whosoever is doing transactions with the customers at point of sale) to greet all customers the following way:
+
+"A. Thanks for coming, Hope we served you well, we are lagging somewhere,as we are new, please guide.
+
+B. Next week Pharmacy is coming, Liqore Store is coming.
+
+C. Please let me know if have n't found anything, you were looking for ?
+
+D. Thanks Once Again. Please Visit Again !"
+
+Step 4. Thanks.
+
+
+
+6. Petty Cash Voucher
+
+Please check following details before you generate Petty Cash Voucher.
+Step 1. Go to nav bar, select accounts then select and click "Petty Cash".
+Step 2. In petty Cash detail form, enter Amount paid as Cash.
+Step 3. Then in 'Charge Account' enter the heading under which cash is used like: Freight, Temporary labour, Mr. Sam cash drawing account etc.
+Step 4. Then enter name of the person to whome the cash is paid to.
+Step 5. 'Paid by' system will automatically pick the name of the person, who is logged in on the computer system.
+Step 6. Then give remarks and press 'Submit button'.
+Step 7. Then new page will open, then press print.
+Step 8. Then new page will open, here you select the printer and print the voucher.
+Step 9. Then take signature of the person to whome you are paying the cash.
+Step 10. Then Then file this document in the petty cash voucher file for future reference.
+Step 10. Thanks.
+
+
+7. Duties and Responsibilities of DM (District Manager)
+
+Everyday Store-report:
+1. All goods received.
+2. Total cash collection and cash deposited in the banks.
+3. Total sale.
+4. All goods transfers (In & Out).
+5. Petty cash details.
+6. All checks received.
+7. All checks distributed.
+8. Any items or goods damaged (In-store & Received).
+9. Any Govt., Personal, Bank letters & Notices, Post,Courier, Parcel received.
+9. Any payable bills received like water, electricity, muncipality etc.
+10. How many employees are coming next day with names, shift timings (if applicable)?.
+11. Thanks.
+
+
+8. TO-BE Cashier Process (For Internal use only)
+
+Everyday Store-report:
+1. Any person eligible for cashier task has to work in the store for one week (Mandatory).
+2. She has to count all the stocks in the store again & again till she understand and remember the items aisle-wise and department-wise (take oral test).
+3. How to talk to the customers (1. Kids, 2. Young 3. Adults 5. Oldies(What to say what not to say)?
+4. She should know, what is EBT ?, Items Coming under EBT?.
+5. Age restriction rules.
+6. How to fully operate POS ?.
+7. What to do if an item don't ring-up?.
+8. How to deal with Cash, Checks, & Cards ?.
+9. How to Up-sell?.
+10. How to deal with Returns & Refunds ?.
+11. How to not to sell expired Goods or Items ?.
+12. How to pack Goods(Items) purchased by customers?.
+13. How to Greet(Welcome & Good-Bye)?.
+14. Thanks.
+
+
+9. Goods Receiving Procedure
+
+How to receive Interstore transfer or Vendors Goods:
+1. Before going to receive Goods must carry with you:
+A Permanent Marker
+Your Mobile Phone
+2. First verify number of pallets or cartons with Receiving Document (vendor's invoice or packing slip or packing order or with inter-store stock transfer sheet).
+3. Proceed further only if numbers does matches, else stop here and inform higher managers and follow instructions.
+4. Please check all the pallets or cartons are intact and there is no damage, leakage, breakage and pilferage, else stop here and inform higher managers and follow instructions.
+5. If yes then mark serialize every pallet or carton as per receiving document specified counts with Permanent Marker.
+6. Then make video of all the pallets or cartons from all-around individally.
+7. Enter receiving document details in Goods Receiving register for it's name, number, date and 'from' location(Vendor's or Store name in case of stock transfer).
+8. Put receiving on Receiving Document with Receiving Register Serial Number, Receiver's Signature, Name, Date and Company's Stamp.
+9. Put received Goods in the ware-house at specified area for counting.
+10. Now check every item for it's:
+Name
+Type
+Pack Size (Unit & Case Pack both)
+Quantity
+11. Make note of Shortage, Damage, Leakage, Breakage and Pilferage if any and Submit with Video.
+12. Thanks.
+
+

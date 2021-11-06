@@ -1,21 +1,18 @@
-from functions.administrator  import add_inventory_item, get_invoices, get_receipts, except_pack_upc
-from functions.authentication import validate_cookie, validate_admin
+from functions.administrator  import add_inventory_item, add_notice, get_invoices, get_receipts, except_pack_upc
+from functions.authentication import get_cookie_user, validate_cookie, validate_admin
 from django.shortcuts import render, redirect
 from django.urls      import reverse
 
-# Create your views here.
+#  CREATE VIEWS IN SORTED ORDER BY [TYPE]  #
 
 def view_receipt(request, *args, **kwargs):
     if validate_cookie(request):
-        if validate_admin(request):
-            database = get_receipts()
-            ginger = {
-                'admin_user': True,
-                'database'  : database,
-            }
-            return render(request, 'view_receipts.html', ginger)
-        else:
-            return redirect(reverse('homepage'))
+        database = get_receipts()
+        ginger = {
+            'admin_user': True,
+            'database'  : database,
+        }
+        return render(request, 'view_receipts.html', ginger)
     else:
         return redirect(reverse('login'))
 
@@ -83,7 +80,7 @@ def add_inventory(request, *args, **kwargs):
                     }
                     return render(request, 'add_inventory.html', ginger)
             else:
-                if request.path in request.META['HTTP_REFERER']:
+                if request.path == request.META['HTTP_REFERER']:
                     ginger ={
                         'correct_details': True,
                     }
@@ -97,3 +94,60 @@ def add_inventory(request, *args, **kwargs):
             return redirect(reverse('homepage'))
     else:
         return redirect(reverse('login'))
+
+
+def add_employee(request, *args, **kwargs):
+    if validate_cookie(request):
+        if validate_admin(request):
+            ginger = {
+                'admin_user': True,
+            }
+            return render(request, 'add_employee.html', ginger)
+        else:
+            return redirect(reverse('homepage'))
+    else:
+        return redirect(reverse('login'))
+
+
+def form_notice(request, *args, **kwargs):
+    if validate_cookie(request):
+        if validate_admin(request):
+            if request.method == 'POST':
+                if all(item in request.POST and item != '' for item in ['title', 'text']):
+                    return redirect(f"/./dashboard/administrator/create-notice/{request.POST['title']}/{request.POST['text']}/")
+                else:
+                    ginger = {
+                        'admin_user': True,
+                        'invalid_details' : True,
+                    }
+                    return render(request, 'create_notice.html', ginger)
+            else:
+                ginger = {
+                    'admin_user': True,
+                }
+                return render(request, 'create_notice.html', ginger)
+        else:
+            return redirect(reverse('homepage'))
+    else:
+        return redirect(reverse('login'))
+
+
+def create_notice(request, *args, **kwargs):
+    if validate_cookie(request):
+        if validate_admin(request):
+            if request.META['HTTP_REFERER'] == "http://192.168.29.90:8000/dashboard/administrator/form-notice/" or request.META['HTTP_REFERER'] == "":
+                user  = get_cookie_user(request)
+                title = kwargs['title']
+                text  = kwargs['text']
+                add_notice(title, text, user)
+                return redirect(reverse('homepage'))
+            else:
+                return redirect(reverse('form_notice'))
+        else:
+            return redirect(reverse('homepage'))
+    else:
+        return redirect(reverse('login'))
+
+
+
+

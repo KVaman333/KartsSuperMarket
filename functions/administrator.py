@@ -1,4 +1,5 @@
 from firebase_admin import db
+from time import time
 
 
 
@@ -62,3 +63,38 @@ def except_pack_upc(request):
         else:
             pass
     return response
+
+
+def add_notice(title, text, user):
+    epoch = round(time())
+
+    userbase = db.reference(f'Users/{user}/')
+    userbase = userbase.get()
+    branch   = userbase['branch']
+    database = db.reference(f'Accounts/Notice/{branch}/')
+    database = database.get()
+    del userbase
+
+    keys_list = database.keys()
+    del database
+
+    id = None
+
+    for key in keys_list: id = key
+    del keys_list
+
+    if id == '0000-0000-0000': id = '100000'
+    else: id = str(int(id.split('-')[-1]) + 1)
+
+    data = {
+        'branch'  : branch,
+        'id'      : id,
+        'title'   : title,
+        'text'    : text,
+        'user'    : user,
+        'epoch'   : epoch,
+    }
+
+    db.reference(f'Accounts/Notice/{branch}/{epoch}-{id}').set(data)
+
+    return id

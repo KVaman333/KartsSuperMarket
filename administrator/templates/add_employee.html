@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-8 ftco-animate">
+        <form id="entryform" action="." class="billing-form bg-light p-3 p-md-5" method="POST" >
+          {% csrf_token %}
+          <h3 class="mb-4 billing-heading">Add Employee<u></u></h3>
+          <div class="row align-items-end">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="Invoice Number">Last Name</label>
+                <input id="stock_locator" name="stock_locator" type="text" value="{{stock_locator}}" class="form-control" placeholder="" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="Invoice Number">First Name</label>
+                <input id="item_order" name="item_order" type="text" value="{{item_order}}" class="form-control" placeholder="" required>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="Invoice Number">Middle Name</label>
+                <input id="description" name="description" type="text" value="{{description}}" class="form-control" placeholder="" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-9">
+              <div class="form-group">
+                <label for="Invoice Amount">Address</label>
+                <input id="sub_description" name="sub_description" type="text" value="{{sub_description}}" class="form-control" placeholder="Street-Address, Winona" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Invoice Amount">Zip Code</label>
+                <input id="sub_description" name="sub_description" type="number" value="{{sub_description}}" class="form-control" placeholder="000000" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="Invoice Amount">Phone Number</label>
+                <input id="sub_description" name="sub_description" type="text" value="{{sub_description}}" class="form-control" placeholder="000-000-0000" required>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="form-group">
+                <label for="Invoice Amount">Email</label>
+                <input id="sub_description" name="sub_description" type="email" value="{{sub_description}}" class="form-control" placeholder="example@mail.com" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-5">
+              <div class="form-group">
+                <label for="Invoice Amount">Social Security Number</label>
+                <input id="sub_description" name="sub_description" type="text" value="{{sub_description}}" class="form-control" placeholder="" required>
+              </div>
+            </div>
+            <div class="col-md-7">
+              <div class="form-group">
+                <label for="Invoice Amount">Position Applied For</label>
+                <input id="sub_description" name="sub_description" type="text" value="{{sub_description}}" class="form-control" placeholder="..." required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Invoice Amount">Citizen Of U.S.A.</label>
+                <input id="sub_description" name="citizen_bool" type="radio" value="{{sub_description}}" class="form-control" placeholder="" required>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Invoice Amount"></label>
+                <input id="sub_description" name="citizen_bool" type="radio" value="{{sub_description}}" class="form-control" placeholder="" required>
+              </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="col-md-12">
+              <div class="form-group d-flex">
+                <input id="department" name="department" type="text" value="{{department}}" class="form-control" placeholder="SomeThing">
+                <input type="submit" value="Submit" class="submit px-3"/>
+              </div>
+            <div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if invalid_details %}
+  <script>
+    window.onload = function exampleFunction() {custom_alert("Warning !","Details Not Complete !", "warning", 1200)}
+  </script>
+{% endif %}
+{% if correct_details %}
+  <script>
+    window.onload = function exampleFunction() {correct()}
+  </script>
+{% endif %}
+{% if invalid_locator %}
+  <script>
+    window.onload = function exampleFunction() {custom_alert("Error !","Stock Locator Number Already Exists !", "error", 3000)}
+  </script>
+{% endif %}
+
+
+
+{% endblock main %}

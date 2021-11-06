@@ -1,133 +1,142 @@
-{% extends 'admin_base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% load administrator %}
 
 
+{% block css %}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+<!-- Bootstrap Core Css -->
+<link href="{% static 'plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+
+<!-- Waves Effect Css -->
+<link href="{% static 'plugins/node-waves/waves.css' %}" rel="stylesheet" />
+
+<!-- Animation Css -->
+<link href="{% static 'plugins/animate-css/animate.css' %}" rel="stylesheet" />
+
+<!-- JQuery DataTable Css -->
+<link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+
+<!-- Custom Css -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet" />
+{% endblock css %}
+
+
 {% block main %}
 
-<div>
-  <section class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-">
-          <div class="col-sm-2">
-            <a href="{% url 'homepage' %}"><i class="fas fa-arrow-left fa-2x mt-5"></i></a>
+<section class="content">
+      <div class="container-fluid">
+          <div class="block-header">
+              <h2>
+                  INVOICES
+              </h2>
           </div>
-          <div class="col-sm-8 mt-5 position-justify" style="text-align: center;">
-            <span><h1 >&nbsp; &nbsp;View Invoices</h1></span>
+          <!-- Exportable Table -->
+          <div class="row clearfix">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                  <div class="card">
+                      <div class="header">
+                          <h2>
+                              RECEIVED INVOCIES' STATUS
+                          </h2>
+                      </div>
+                      <div class="body">
+                          <div class="table-responsive">
+                              <table class="table table-bordered table-striped table-hover dataTable js-exportable">
+                                  <thead>
+                                    <tr>
+                                      <th>Ordered By           </th>
+                                      <th>P.O. No./ Invoice No.</th>
+                                      <th>P.O. Amount          </th>
+                                      <th>Invoice Amount       </th>
+                                      <th>Payment Method       </th>
+                                      <th>Vendor               </th>
+                                      <th>Rcvd By              </th>
+                                      <th>Date/Time            </th>
+                                    </tr>
+                                  </thead>
+                                  <tfoot>
+                                    <tr>
+                                      <th>Ordered By           </th>
+                                      <th>P.O. No./ Invoice No.</th>
+                                      <th>P.O. Amount          </th>
+                                      <th>Invoice Amount       </th>
+                                      <th>Payment Method       </th>
+                                      <th>Vendor               </th>
+                                      <th>Rcvd By              </th>
+                                      <th>Date/Time            </th>
+                                    </tr>
+                                  </tfoot>
+                                    <tbody>
+                                      {% for item in database %}
+                                        <tr>
+                                          <td>{{item|get_iuser:database}}</td>
+                                          <td>{{item|get_ipono_inno:database}}</td>
+                                          <td>$ {{item|get_ipoamt:database}}</td>
+                                          <td>{{item|get_iinamt:database}}</td>
+                                          <td>{{item|get_ipay:database}}</td>
+                                          <td>{{item|get_ivendor:database}}</td>
+                                          <td>{{item|get_ireceivedby:database}}</td>
+                                          {% if item|if_ifile:database %}
+                                            <td><a href="{{item|get_ifile:database}}" target="_blank">OPEN FILE</a></td>
+                                          {% else %}
+                                            <td>NO FILES</td>
+                                          {% endif %}
+                                        </tr>
+                                      {% endfor %}
+                                    </tbody>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+              </div>
           </div>
-          <div class="col-sm-2">
-            <img src="{% static 'adminlte/dist/img/karts2.png' %}" class="img-fluid"  style="height:100px; width:200px;">
-          </div>
-        </div>
-    </div>
-  </section>
-  <section class="content">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12">
-          <div class="card">
-            <!---<div class="card-header">
-              <h3 class="card-title">DataTable with default features</h3>
-              </div>-->
-            <div class="card-body">
-              <table id="example1" class="table table-bordered table-striped">
-                <thead>
-                  <tr>
-                    <th>Ordered By           </th>
-                    <th>P.O. No./ Invoice No.</th>
-                    <th>P.O. Amount          </th>
-                    <th>Invoice Amount       </th>
-                    <th>Payment Method       </th>
-                    <th>Vendor               </th>
-                    <th>Rcvd By              </th>
-                    <th>Date/Time            </th>
-                  </tr>
-                </thead>
-                <tbody>
-                {% for item in database %}
-                  <tr>
-                    <td>{{item|get_iuser:database}}</td>
-                    <td>{{item|get_ipono_inno:database}}</td>
-                    <td>$ {{item|get_ipoamt:database}}</td>
-                    <td>{{item|get_iinamt:database}}</td>
-                    <td>{{item|get_ipay:database}}</td>
-                    <td>{{item|get_ivendor:database}}</td>
-                    <td>{{item|get_ireceivedby:database}}</td>
-                    {% if item|if_ifile:database %}
-                      <td><a href="{{item|get_ifile:database}}" target="_blank">OPEN FILE</a></td>
-                    {% else %}
-                      <td>NO FILES</td>
-                    {% endif %}
-                  </tr>
-                {% endfor %}
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <th>Ordered By           </th>
-                    <th>P.O. No./ Invoice No.</th>
-                    <th>P.O. Amount          </th>
-                    <th>Invoice Amount       </th>
-                    <th>Payment Method       </th>
-                    <th>Vendor               </th>
-                    <th>Rcvd By              </th>
-                    <th>Date/Time            </th>
-                  </tr>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-        </div>
+          <!-- #END# Exportable Table -->
       </div>
-    </div>
   </section>
-</div>
-</div>
 
 {% endblock main %}
 
 
-{% block admin_script %}
+{% block scripts %}
+    <!-- Jquery Core Js -->
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
 
-  {% if admin_user %}
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.js' %}"></script>
 
-    <script>
-      $(function () {
-        $("#example1").DataTable({
-          "responsive": true, "lengthChange": false, "autoWidth": false,
-          "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-          "paging"      : true,
-          "lengthChange": false,
-          "searching"   : false,
-          "ordering"    : true,
-          "info"        : true,
-          "autoWidth"   : false,
-          "responsive"  : true,
-        });
-      });
-    </script>
+    <!-- Select Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
 
-  {% else %}
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
 
-    <script>
-      $(function () {
-        $("#example1").DataTable({
-          "responsive": true, "lengthChange": false, "autoWidth": false,
-        }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        $('#example2').DataTable({
-          "paging"      : true,
-          "lengthChange": false,
-          "searching"   : false,
-          "ordering"    : true,
-          "info"        : true,
-          "autoWidth"   : false,
-          "responsive"  : true,
-        });
-      });
-    </script>
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'plugins/node-waves/waves.js' %}"></script>
 
-  {% endif %}
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
 
-{% endblock admin_script %}
+    <!-- Custom Js -->
+    <script src="{% static 'js/admin.js' %}"></script>
+    <script src="{% static 'js/pages/tables/jquery-datatable.js' %}"></script>
+
+    <!-- Demo Js -->
+    <script src="{% static 'js/demo.js' %}"></script>
+{% endblock scripts %}
+
 

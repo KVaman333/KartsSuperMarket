@@ -4,14 +4,16 @@ import time
 
 
 def validate_cookie(request):
-    cookie = request.COOKIES.get('user', False)
-    if cookie:
+    cookie = request.COOKIES.get('user', 'False')
+    cookie = cookie.split(':')[0]
+    if cookie != 'False':
         return True
     else:
         return False
 
 def validate_admin(request):
     cookie_user = request.COOKIES.get('user', None)
+    cookie_user = cookie_user.split(':')[0]
     database = db.reference(f'Users/{cookie_user}/')
     database = database.get()
     if database['category'] == 'admin':
@@ -19,8 +21,25 @@ def validate_admin(request):
     else:
         return False
 
+
+def create_cookie(response, request_username):
+    database = db.reference(f'Users/{request_username}/')
+    database = database.get()
+    data     = f"{request_username}:{database['name']}:{database['email']}:{database['category']}"
+    response.set_cookie('user', data)
+    return response
+
+
 def get_cookie_user(request):
     cookie_user = request.COOKIES.get('user', None)
+    cookie_user = cookie_user.split(':')[0]
+    return cookie_user
+
+
+def get_username_name(request):
+    database = db.reference('Users')
+    database = database.get()
+
     return cookie_user
 
 
@@ -36,7 +55,6 @@ def user_auth(user_name, user_password):
             verified = True
         else:
             pass
-
 
     return verified
 
@@ -69,3 +87,11 @@ def get_time(command):
         return f'{epoch.tm_mon}-{epoch.tm_mday}-{epoch.tm_year}'
     else:
         return epoch
+
+
+def get_username_name(username):
+    userbase  = db.reference(f'Users/{username}/')
+    userbase  = userbase.get()
+    user_name = userbase['name']
+    
+    return user_name

@@ -1,4 +1,4 @@
-from functions.authentication import change, get_cookie_user, user_auth, validate_cookie
+from functions.authentication import change, create_cookie, get_cookie_user, user_auth, validate_cookie
 from django.shortcuts         import render, redirect
 from django.urls              import reverse
 from django.template    import RequestContext
@@ -18,8 +18,7 @@ def login(request, *args, **kwargs):
                 verified = user_auth(request.POST['username'], request.POST['password'])
                 if verified:
                     response = redirect(reverse('homepage'))
-                    response.set_cookie('user',request.POST['username'])
-                    return response
+                    return create_cookie(response, request.POST['username'])
                 else:
                     ginger = {
                         'invalid_details': True,
@@ -109,8 +108,8 @@ def handler500(request, *args, **argv):
         response = redirect(reverse('se'))
         return response
 def error404_handler(request, *args, **kwargs):
-    return render(request, '404.html')
+    return render(request, '404_dh.html')
 def error500_handler(request, *args, **kwargs):
-    return render(request, '500.html')
+    return render(request, '500_dh.html')
 
 

@@ -8,3 +8,9 @@ def stock_inventory():
     database = database.get()
 
     return database
+
+def classes():
+    database = db.reference('Inventory/Classes/')
+    database = database.get()
+
+    return database

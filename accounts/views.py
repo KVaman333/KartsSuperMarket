@@ -10,8 +10,14 @@ from django.urls      import reverse
 def wo_inventory(request, *args, **kwargs):
     if validate_cookie(request):
         if request.method == 'POST':
-            if 'event' in request.POST and 'name' in request.POST and 'upc' in request.POST and 'size' in request.POST and 'quantity' in request.POST and 'prize' in request.POST and 'remarks' in request.POST:
-                return redirect(f"/./dashboard/accounts/write-off-inventory/add/{request.POST['event']}/{request.POST['name']}/{request.POST['upc']}/{request.POST['size']}/{request.POST['quantity']}/{request.POST['prize']}/{request.POST['remarks']}/")
+            if all(item in request.POST for item in ['event', 'name', 'upc', 'size', 'quantity', 'price', 'remarks']):
+                if any(item in request.POST['event'] for item in ['Used', 'Expired', 'Breakage', 'Damaged', 'Missing', 'Tampered']):
+                    return redirect(f"/./dashboard/accounts/write-off-inventory/add/{request.POST['event']}/{request.POST['name']}/{request.POST['upc']}/{request.POST['size']}/{request.POST['quantity']}/{request.POST['price']}/{request.POST['remarks']}/")
+                else:
+                    ginger = {
+                        'invalid_details':True,
+                    }
+                    return render(request, 'wo_inventory.html', ginger)
             else:
                 ginger = {
                     'invalid_details':True,
@@ -26,10 +32,16 @@ def wo_inventory(request, *args, **kwargs):
 def receipt(request, *args, **kwargs):
     if validate_cookie(request):
         if request.method == 'POST':
-            if 'name' in request.POST and 'amount' in request.POST and 'pay' in request.POST and 'remarks' in request.POST and 'file' in request.FILES:
-                file = request.FILES['file']
-                default_storage.save(file.name, file)
-                return redirect(f"/./dashboard/accounts/receipts/add/{request.POST['name']}/{request.POST['amount']}/{request.POST['pay']}/{request.POST['remarks']}/{file.name}/")
+            if all(item in request.POST for item in ['name', 'amount', 'pay', 'remarks']) and 'file' in request.FILES:
+                if any(item in request.POST['pay'] for item in ['Cash', 'Credit Card', 'Online Payment', 'Cheque']):
+                    file = request.FILES['file']
+                    default_storage.save(file.name, file)
+                    return redirect(f"/./dashboard/accounts/receipts/add/{request.POST['name']}/{request.POST['amount']}/{request.POST['pay']}/{request.POST['remarks']}/{file.name}/")
+                else:
+                    ginger = {
+                        'invalid_details':True,
+                    }
+                    return render(request, 'receipt.html', ginger)
             else:
                 ginger = {
                     'invalid_details':True,

@@ -90,3 +90,15 @@ def editable_po(po_num):
             pass
 
     return valid
+
+
+def get_notices(user):
+    userbase = db.reference(f'Users/{user}/')
+    userbase = userbase.get()
+    branch   = userbase['branch']
+    database = db.reference(f'Accounts/Notice/{branch}/')
+    database = database.get()
+
+    del database['0000-0000-0000']
+
+    return database
