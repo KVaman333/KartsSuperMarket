@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      {% load static %}
+      <title>Karts Supermarket</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="shortcut icon" type="image/x-icon" href="{% static 'favicon.ico' %}">
+      <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+      <link rel="stylesheet" href="{% static 'style.css' %}" />
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light ftco-navbar-light-3" id="ftco-navbar">
+         <div class="container">
+            <a class="navbar-brand" href=""><img src="{% static 'adminlte/dist/img/karts2.png' %}" class="img-fluid"  style="height:100px; width:200px;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+            </button>
+            <div class="collapse navbar-collapse" id="ftco-nav">
+               <ul class="navbar-nav ml-auto">
+                  <li class="nav-item cta cta-colored"><a href="{% url 'login' %}" class="nav-link"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Login</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+
+
+      {% block main %}
+      {% endblock main %}
+
+      
+      
+      <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/jquery-migrate-3.0.1.min.js+popper.min.js+bootstrap.min.js+jquery.easing.1.3.js.pagespeed.jc.5hHtSZdmwp.js' %}"></script><script>eval(mod_pagespeed_biXpWqTu0z);</script>
+      <script>eval(mod_pagespeed_73bmy1BcRI);</script>
+      <script>eval(mod_pagespeed_cz$y0DHlGo);</script>
+      <script>eval(mod_pagespeed_xEwDGLI4eC);</script>
+      <script src="{% static 'js/jquery.waypoints.min.js+jquery.stellar.min.js+owl.carousel.min.js+jquery.magnific-popup.min.js.pagespeed.jc.sKk0xIJllE.js' %}"></script><script>eval(mod_pagespeed_uP8m907atr);</script>
+      <script>eval(mod_pagespeed_RVDwHwfXuE);</script>
+      <script>eval(mod_pagespeed_7ee5vP483y);</script>
+      <script>eval(mod_pagespeed_JCzfSFPg2h);</script>
+      <script src="{% static 'js/aos.js+jquery.animateNumber.min.js+bootstrap-datepicker.js+scrollax.min.js+google-map.js+main.js.pagespeed.jc.lYVC4LS8ef.js' %}"></script><script>eval(mod_pagespeed_yW2lR$Kjbw);</script>
+      <script>eval(mod_pagespeed_4WzhZ69ygE);</script>
+      <script>eval(mod_pagespeed_IvuvUn0V7O);</script> 
+      <script>eval(mod_pagespeed_tv_DyLK0Ud);</script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+      <script>eval(mod_pagespeed_FgsA2Kca7t);</script>
+      <script>eval(mod_pagespeed_nbXqxUO_Ul);</script>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         
+         gtag('config', 'UA-23581568-13');
+      </script>
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+      <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"683a970669172e2e","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2021.8.1","si":10}'></script>
+   </body>
+</html>

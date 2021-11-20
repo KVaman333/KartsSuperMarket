@@ -1,0 +1,335 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load administrator %}
+{% load permission %}
+
+
+{% block css %}
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+<!-- Bootstrap Core Css -->
+<link href="{% static 'plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+<!-- Waves Effect Css -->
+<link href="{% static 'plugins/node-waves/waves.css' %}" rel="stylesheet" />
+<!-- Animation Css -->
+<link href="{% static 'plugins/animate-css/animate.css' %}" rel="stylesheet" />
+<!-- JQuery DataTable Css -->
+<link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+<!-- Custom Css -->
+<link href="{% static 'css/style.css' %}" rel="stylesheet">
+<!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+<link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet" />
+{% endblock css %}
+
+
+{% block main %}
+
+<section class="content">
+  <div class="row clearfix">
+    <!-- Colorful Panel Items With Icon -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="card">
+        <div class="header">
+          <h2>
+            SOP [ STANDARD OPERATING PROCEDURE ]
+          </h2>
+        </div>
+        <div class="body">
+          <div class="row clearfix">
+            <div class="col-xs-12 ol-sm-12 col-md-12 col-lg-12">
+              <div class="panel-group" id="accordion_17" role="tablist" aria-multiselectable="true">
+                {% if request.COOKIES.user|allow_receipts %}
+                  <div class="panel panel-col-pink">
+                    <div class="panel-heading" role="tab" id="headingOne_17">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapseOne_17" aria-expanded="true" aria-controls="collapseOne_17">
+                        <i class="material-icons">perm_contact_calendar</i>
+                          How to Enter Receipt ?
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseOne_17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_17">
+                      <div class="panel-body">
+                        &bull; Step 1. Click 'Receipt' on the Nav-Bar.<br><br>
+                        &bull; Step 2. Enter Type of receipt like Water, electricity, freight etc.<br><br>
+                        &bull; Step 3. Enter Amount.<br><br>
+                        &bull; Step 4. Select Payment Method.<br><br>
+                        &bull; Step 5. Give remarks like, if the recept is for freight, then mention that this receipt is for freight paid against invoice no. 254 of Farris Brothers, Dated 15th Sep. 2021.<br><br>
+                        &bull; Step 6. Then press next.<br><br>
+                        &bull; Step 7. This Step is important. Here, on the new page, you you will see a box displaying a serial number, put this number on the receipt you are entering with a pen only ( not pencil).<br><br>
+                        &bull; Step 8. Scan the receipt with serial number and email it at kartsupermarket@gmail.com.<br><br>
+                        &bull; Step 9. Store the original receipt in a file or a folder for future use.<br><br>
+                        &bull; Step 10. Thanks.
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_iwoff %}
+                  <div class="panel panel-col-cyan">
+                    <div class="panel-heading" role="tab" id="headingTwo_17">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapseTwo_17" aria-expanded="false"
+                          aria-controls="collapseTwo_17">
+                        <i class="material-icons">remove_circle_outline</i>
+                        Inventory Write-off
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseTwo_17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_17">
+                      <div class="panel-body">
+                        &bull; Step 1. Click 'IWof' on the Nav-Bar.<br><br>
+                        &bull; Step 2. Enter UPC of the item.<br><br>
+                        &bull; Step 3. Select Event of Notice.<br><br>
+                        &bull; Step 4. Enter pack-size like, 100 gm. or 500 ml etc.<br><br>
+                        &bull; Step 5. Enetr quantity like 3 pcs. or 10 numbers etc.<br><br>
+                        &bull; Step 6. Enter price of one pc. or number.<br><br>
+                        &bull; Step 7. In remarks box please enter reason for the event and who is responsible for the same.<br><br>
+                        &bull; Step 8. Thanks.
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_inventory %}
+                  <div class="panel panel-col-light-green">
+                    <div class="panel-heading" role="tab" id="headingThree_17">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapseThree_17" aria-expanded="false"
+                          aria-controls="collapseThree_17">
+                        <i class="material-icons">done_all</i>
+                        Vendor Invoice Check List
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseThree_17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_17">
+                      <div class="panel-body">
+                        Please check following details before you send to India<br><br>
+                        &bull; Step 1. Vendor name.<br><br>
+                        &bull; Step 2. Item Name.<br><br>
+                        &bull; Step 3. Vendor Item ID.<br><br>
+                        &bull; Step 4. Item unit UPC.<br><br>
+                        &bull; Step 5. Unit Price.<br><br>
+                        &bull; Step 6. Pack UPC (Whichever applicable).<br><br>
+                        &bull; Step 7. Pack Price.<br><br>
+                        &bull; Step 8. Whatever of above info. not availabe, please arrange then send invoice or Sales Note to India office.<br><br>
+                        &bull; Step 9. Thanks.
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_inventory %}
+                  <div class="panel panel-col-orange">
+                    <div class="panel-heading" role="tab" id="headingFour_17">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapseFour_17" aria-expanded="false"
+                          aria-controls="collapseFour_17">
+                        <i class="material-icons">widgets</i>
+                          Inter Store Stock Transfer
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapseFour_17" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour_17">
+                      <div class="panel-body">
+                        Please check following details before you transfer stocks to another store<br><br>
+                        &bull; Step 1. No stock should leave without Mr. Sam or Mr Vipin's written permission.<br><br>
+                        &bull; Step 2. No item is permitted for transfer without UPC.<br><br>
+                        &bull; Step 3. All stock transfers will be on a written Stock transfer format. And will be performed by an authorised "Dispatcher" only.<br><br>
+                        &bull; Step 4. Stock transfer format will be signed and verified by atleast two personal, one counting and dispatching the stocks(called as "Dispatcher"), second authorizing the dispatch (called as "Verifier" like Mr. Sam, his father Mr. Yograj, Mr. Nick or Ms. Heather. *Counting or Dispatching and Authorizing persons cann't be the same.<br><br>
+                        &bull; Step 5. Any dispatch without UPC will be considered as Stock loss and dispatcher will be held responsible for the loss and will be liable for loss recoveries in toto.<br><br>
+                        &bull; Step 6. Any stock discrepencies after arrival at the destination, unless proved lost during transit, dispatcher will be held responsible for the losses and will be liable for recoveries.<br><br>
+                        &bull; Step 7. Any Breakage, Damage or Pilferage of Goods during transit, Dispatcher will not be held responsible unless Breakage, Damage or Pilferage is due to negligence during packing of such goods and proper placement in the carrier vehicle and proper closing and locking of the carrier vehicle.<br><br>
+                        &bull; Step 8. It is Dispatcher's responsibility to confirm documented delivery of Goods at delivery destination(s).<br><br>
+                        &bull; Step 9. Thanks.
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_cashier %}
+                  <div class="panel panel-col-green">
+                    <div class="panel-heading" role="tab" id="headingOne_17">
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapse_box_5" aria-expanded="true" aria-controls="collapse_box_5">
+                        <i class="material-icons">school</i>
+                          Point of Sale Pledges
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse_box_5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne_17">
+                      <div class="panel-body">
+                        Please check following details before you transfer stocks to another store<br><br>
+                        &bull; Step 1. No item price over-riding are permitted without Mr. Sam or Mr Vipin's written permission. Else will considered as Fraud or Theft of company property and will be punishable by law and for financial recoveries.<br><br>
+                        &bull; Step 2. For all items which don't ring up by UPC and are being sold as unlisted, manual records has tobe maintained for Item name, pack size, quantity and price. If there is a rush hour, ask for somebody's help and must take pictures of the item(s) being sold for item's name and barcode. Any negligence is liable for financial penalities upto total cost of the items sold.<br><br>
+                        &bull; Step 3. It is mandatory for all cashiers (whosoever is doing transactions with the customers at point of sale) to greet all customers the following way:<br>
+                        "A. Thanks for coming, Hope we served you well, we are lagging somewhere,as we are new, please guide.<br>
+                        B. Next week Pharmacy is coming, Liqore Store is coming.<br>
+                        C. Please let me know if have n't found anything, you were looking for ?<br>
+                        D. Thanks Once Again. Please Visit Again !"<br><br>
+                        &bull; Step 4. Thanks.
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_cashier %}
+                  <div class="panel panel-col-purple">
+                    <div class="panel-heading" role="tab" id="headingTwo_17">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapse_box_6" aria-expanded="false"
+                          aria-controls="collapse_box_6">
+                        <i class="material-icons">attach_money</i>
+                        Petty Cash Voucher
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse_box_6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo_17">
+                      <div class="panel-body">
+                        Please check following details before you generate Petty Cash Voucher.<br><br>
+                        &bull; Step 1. Go to nav bar, select accounts then select and click "Petty Cash".<br><br>
+                        &bull; Step 2. In petty Cash detail form, enter Amount paid as Cash.<br><br>
+                        &bull; Step 3. Then in 'Charge Account' enter the heading under which cash is used like: Freight, Temporary labour, Mr. Sam cash drawing account etc.<br><br>
+                        &bull; Step 4. Then enter name of the person to whome the cash is paid to.<br><br>
+                        &bull; Step 5. 'Paid by' system will automatically pick the name of the person, who is logged in on the computer system.<br><br>
+                        &bull; Step 6. Then give remarks and press 'Submit button'.<br><br>
+                        &bull; Step 7. Then new page will open, then press print.<br><br>
+                        &bull; Step 8. Then new page will open, here you select the printer and print the voucher.<br><br>
+                        &bull; Step 9. Then take signature of the person to whome you are paying the cash.<br><br>
+                        &bull; Step 10. Then Then file this document in the petty cash voucher file for future reference.<br><br>
+                        &bull; Step 11. Thanks.<br><br>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_receipts %}
+                  <div class="panel panel-col-teal">
+                    <div class="panel-heading" role="tab" id="headingThree_17">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapse_box_7" aria-expanded="false"
+                          aria-controls="collapse_box_7">
+                        <i class="material-icons">contact_phone</i>
+                        Duties and Responsibilities of SM (Store Manager)
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse_box_7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree_17">
+                      <div class="panel-body">
+                        Everyday Store-report:<br><br>
+                        &bull; Step 1. All goods received.<br><br>
+                        &bull; Step 2. Total cash collection and cash deposited in the banks.<br><br>
+                        &bull; Step 3. Total sale.<br><br>
+                        &bull; Step 4. All goods transfers (In & Out).<br><br>
+                        &bull; Step 5. Petty cash details.<br><br>
+                        &bull; Step 6. All checks received.<br><br>
+                        &bull; Step 7. All checks distributed.<br><br>
+                        &bull; Step 8. Any items or goods damaged (In-store & Received).<br><br>
+                        &bull; Step 9. Any Govt., Personal, Bank letters & Notices, Post,Courier, Parcel received.<br><br>
+                        &bull; Step 10. Any payable bills received like water, electricity, muncipality etc.<br><br>
+                        &bull; Step 11. How many employees are coming next day with names, shift timings (if applicable)?.<br><br>
+                        &bull; Step 12. Thanks.<br><br>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_ho %}
+                  <div class="panel panel-col-blue">
+                    <div class="panel-heading" role="tab" id="headingFour_17">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapse_box_8" aria-expanded="false"
+                          aria-controls="collapse_box_8">
+                        <i class="material-icons">group_add</i>
+                          TO-BE Cashier Process (For Internal use only)
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse_box_8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour_17">
+                      <div class="panel-body">
+                        Everyday Store-report:
+                        &bull; Step 1. Any person eligible for cashier task has to work in the store for one week (Mandatory).<br><br>
+                        &bull; Step 2. She has to count all the stocks in the store again & again till she understand and remember the items aisle-wise and department-wise (take oral test).<br><br>
+                        &bull; Step 3. How to talk to the customers (1. Kids, 2. Young 3. Adults 5. Oldies(What to say what not to say)?<br><br>
+                        &bull; Step 4. She should know, what is EBT ?, Items Coming under EBT?.<br><br>
+                        &bull; Step 5. Age restriction rules.<br><br>
+                        &bull; Step 6. How to fully operate POS ?.<br><br>
+                        &bull; Step 7. What to do if an item don't ring-up?.<br><br>
+                        &bull; Step 8. How to deal with Cash, Checks, & Cards ?.<br><br>
+                        &bull; Step 9. How to Up-sell?.<br><br>
+                        &bull; Step 10. How to deal with Returns & Refunds ?.<br><br>
+                        &bull; Step 11. How to not to sell expired Goods or Items ?.<br><br>
+                        &bull; Step 12. How to pack Goods(Items) purchased by customers?.<br><br>
+                        &bull; Step 13. How to Greet(Welcome & Good-Bye)?.<br><br>
+                        &bull; Step 14. Thanks.
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if request.COOKIES.user|allow_inventory %}
+                  <div class="panel panel-col-brown">
+                    <div class="panel-heading" role="tab" id="headingFour_17">
+                      <h4 class="panel-title">
+                        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion_17" href="#collapse_box_9" aria-expanded="false"
+                          aria-controls="collapse_box_9">
+                        <i class="material-icons">view_agenda</i>
+                          Goods Receiving Procedure
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="collapse_box_9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour_17">
+                      <div class="panel-body">
+                        How to receive Interstore transfer or Vendors Goods:<br><br>
+                        &bull; Step 1. Before going to receive Goods must carry with you:<br>
+                        A Permanent Marker<br>
+                        Your Mobile Phone<br><br>
+                        &bull; Step 2. First verify number of pallets or cartons with Receiving Document (vendor's invoice or packing slip or packing order or with inter-store stock transfer sheet).<br><br>
+                        &bull; Step 3. Proceed further only if numbers does matches, else stop here and inform higher managers and follow instructions.<br><br>
+                        &bull; Step 4. Please check all the pallets or cartons are intact and there is no damage, leakage, breakage and pilferage, else stop here and inform higher managers and follow instructions.<br><br>
+                        &bull; Step 5. If yes then mark serialize every pallet or carton as per receiving document specified counts with Permanent Marker.<br><br>
+                        &bull; Step 6. Then make video of all the pallets or cartons from all-around individally.<br><br>
+                        &bull; Step 7. Enter receiving document details in Goods Receiving register for it's name, number, date and 'from' location(Vendor's or Store name in case of stock transfer).<br><br>
+                        &bull; Step 8. Put receiving on Receiving Document with Receiving Register Serial Number, Receiver's Signature, Name, Date and Company's Stamp.<br><br>
+                        &bull; Step 9. Put received Goods in the ware-house at specified area for counting.<br><br>
+                        &bull; Step 10. Now check every item for it's:<br>
+                        Name<br>
+                        Type<br>
+                        Pack Size (Unit & Case Pack both)<br>
+                        Quantity<br><br>
+                        &bull; Step 11. Make note of Shortage, Damage, Leakage, Breakage and Pilferage if any and Submit with Video.<br><br>
+                        &bull; Step 12. Thanks.<br><br>
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- #END# Colorful Panel Items With Icon -->
+  </div>
+</section>
+{% endblock main %}
+{% block scripts %}
+<!-- Jquery Core Js -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap Core Js -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.js' %}"></script>
+<!-- Select Plugin Js -->
+<script src="{% static 'plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+<!-- Slimscroll Plugin Js -->
+<script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+<!-- Waves Effect Plugin Js -->
+<script src="{% static 'plugins/node-waves/waves.js' %}"></script>
+<!-- Jquery DataTable Plugin Js -->
+<script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+<script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+<!-- Custom Js -->
+<script src="{% static 'js/admin.js' %}"></script>
+<script src="{% static 'js/pages/tables/jquery-datatable.js' %}"></script>
+<!-- Demo Js -->
+<script src="{% static 'js/demo.js' %}"></script>
+{% endblock scripts %}

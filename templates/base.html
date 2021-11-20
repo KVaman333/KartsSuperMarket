@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load static %}
+    {% load base_tags %}
+    {% load permission %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Karts Supermarket</title>
+    <!-- Favicon-->
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    {% block css %}
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link href="{% static 'plugins/bootstrap/css/bootstrap.css' %}" rel="stylesheet">
+    <!-- Waves Effect Css -->
+    <link href="{% static 'plugins/node-waves/waves.css' %}" rel="stylesheet" />
+    <!-- Animation Css -->
+    <link href="{% static 'plugins/animate-css/animate.css' %}" rel="stylesheet" />
+    <!-- Morris Chart Css-->
+    <link href="{% static 'plugins/morrisjs/morris.css' %}" rel="stylesheet" />
+    <!-- Custom Css -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="{% static 'css/themes/all-themes.css' %}" rel="stylesheet" />
+    <!-- Bootstrap Select Css -->
+    <link href="{% static 'plugins/bootstrap-select/css/bootstrap-select.css' %}" rel="stylesheet" />
+    <!-- Bootstrap Material Datetime Picker Css -->
+    <link href="{% static 'plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css' %}" rel="stylesheet" />
+    <!-- Bootstrap DatePicker Css -->
+    <link href="{% static 'plugins/bootstrap-datepicker/css/bootstrap-datepicker.css' %}" rel="stylesheet" />
+    <!-- Dropzone Css -->
+    <link href="{% static 'plugins/dropzone/dropzone.css' %}" rel="stylesheet">
+    <!-- JQuery DataTable Css -->
+    <link href="{% static 'plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css' %}" rel="stylesheet">
+    {% endblock css %}
+    <!-- CUSTOM CSS -->
+    <link href="{% static 'custom/css/custom.css' %}" rel="stylesheet">
+  </head>
+  <body class="theme-indigo" status="{% block navStatus %}{% endblock navStatus %}">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
+      <div class="loader">
+        <div class="preloader">
+          <div class="spinner-layer pl-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div>
+            <div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+        <p>Please wait...</p>
+      </div>
+    </div>
+    <!-- #END# Page Loader -->
+    <!-- Overlay For Sidebars -->
+    <div class="overlay"></div>
+    <!-- #END# Overlay For Sidebars -->
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <div class="search-icon">
+        <i class="material-icons">search</i>
+      </div>
+      <input type="text" placeholder="START TYPING...">
+      <div class="close-search">
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+    <!-- #END# Search Bar -->
+    <!-- Top Bar -->
+    <nav class="navbar">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+          <a href="javascript:void(0);" class="bars"></a>
+          <a class="navbar-brand font-bold" href=""><span>&emsp;&ensp;</span><span>Karts - SuperMarket</span></a>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <!-- DAILY REPORT -->
+            <li class="dropdown pointer">
+              <a id="dailyReportLink">
+                <i class="material-icons">insert_chart</i>
+              </a>
+            </li>
+            <!-- #END# DAILY REPORT -->
+            <!-- Notifications -->
+            <li class="dropdown">
+              <a href="{% url 'notice' %}">
+                <i class="material-icons">
+                  notifications
+                </i>
+              </a>
+            </li>
+            <!-- #END# Notifications -->
+            <!-- SOP -->
+            <li class="dropdown">
+              <a href="{% url 'faq' %}">
+                <i class="material-icons">gavel</i>
+              </a>
+            </li>
+            <!-- #SOP -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- #Top Bar -->
+    <section>
+      <!-- Left Sidebar -->
+      <aside id="leftsidebar" class="sidebar">
+        <!-- User Info -->
+        <div class="user-info">
+          <div class="image">
+            <img src="{% static 'images/profile.png' %}" width="48" height="48" alt="User" />
+          </div>
+          <div class="info-container">
+            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ request.COOKIES.user|name }}</div>
+            <div class="email">{{ request.COOKIES.user|email }}</div>
+            <div class="btn-group user-helper-dropdown">
+              <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+              <ul class="dropdown-menu pull-right">
+                {% comment %} <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                <li role="separator" class="divider"></li> {% endcomment %}
+                <li><a href="{% url 'change' %}"><i class="material-icons">fingerprint</i>Password</a></li>
+                <li><a href="{% url 'logout' %}"><i class="material-icons">input</i>Sign Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- #User Info -->
+        <!-- Menu -->
+        <div class="menu">
+          <ul class="list">
+            <li class="header">MAIN MENU</li>
+            <li class="active">
+              <a href="{% url 'homepage' %}">
+              <i class="material-icons">home</i>
+              <span>Home</span>
+              </a>
+            </li>
+            {% if request.COOKIES.user|allow_po %}
+              <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">account_circle</i>
+                <span>Admin</span>
+                </a>
+                <ul class="ml-menu">
+                  {% if request.COOKIES.user|allow_notice %}
+                    <li>
+                      <a href="{% url 'form_notice' %}">Create Notices</a>
+                    </li>
+                  {% endif %}
+                </ul>
+              </li>
+            {% endif %}
+            <li>
+              <a href="javascript:void(0);" class="menu-toggle">
+              <i class="material-icons">account_balance</i>
+              <span>V-Update</span>
+              </a>
+              <ul class="ml-menu">
+                {% if request.COOKIES.user|allow_iwoff %}
+                  <li>
+                    <a href="{% url 'wo' %}" >&nbsp;&nbsp;IWOff</a>
+                  </li>
+                {% endif %}
+                {% if request.COOKIES.user|allow_po %}
+                  <li>
+                    <a data-toggle="modal" data-target="#defaultModal" >&nbsp;&nbsp;P.O.</a>
+                  </li>
+                {% endif %}
+                {% if request.COOKIES.user|allow_pc %}
+                  <li>
+                    <a href="{% url 'petty_cash' %}" >&nbsp;&nbsp;Petty Cash</a>
+                  </li>
+                {% endif %}
+                {% if request.COOKIES.user|allow_receipts %}
+                  <li>
+                    <a href="javascript:void(0);" class="menu-toggle">
+                    <span>Receipts</span>
+                    </a>
+                    <ul class="ml-menu">
+                      <li>
+                        <a href="{% url 'receipt' %}">Add Receipt</a>
+                      </li>
+                      <li>
+                        <a href="{% url 'view_receipt' %}">View Receipts</a>
+                      </li>
+                    </ul>
+                  </li>
+                {% endif %}
+              </ul>
+            </li>
+            {% if request.COOKIES.user|allow_inventory %}
+              <li>
+                <a href="javascript:void(0);" class="menu-toggle">
+                <i class="material-icons">dns</i>
+                <span>Inventory Management</span>
+                </a>
+                <ul class="ml-menu">
+                  {% if request.COOKIES.user|allow_po %}
+                    <li>
+                      <a href="javascript:void(0);" class="menu-toggle">
+                      <span>Invoice Management</span>
+                      </a>
+                      <ul class="ml-menu">
+                        <li>
+                          <a href="{% url 'view_invoices' %}">View Invoices</a>
+                        </li>
+                      </ul>
+                    </li>
+                  {% endif %}
+                  <li>
+                    <a href="{% url 'inventory_table' %}" >View Inventory</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'classes' %}" >View Departments</a>
+                  </li>
+                </ul>
+              </li>
+            {% endif %}
+            {% if request.COOKIES.user|allow_ho %}
+              <li class="header">HR MANAGEMENT</li>
+                <li>
+                  <a href="javascript:void(0);" class="menu-toggle">
+                  <i class="material-icons">group</i>
+                  <span>Employee Management</span>
+                  </a>
+                  <ul class="ml-menu">
+                    <li>
+                      <a href="{% url 'form_employee' %}"><span>Add Employees</span></a>
+                    </li>
+                    <li>
+                      <a href="{% url 'employee_list' %}"><span>View Employees</span></a>
+                    </li>
+                  </ul>
+                </li>
+            {% endif %}
+          </ul>
+        </div>
+        <!-- #Menu -->
+        <!-- Footer -->
+        <div class="legal">
+          <div class="copyright">
+            &copy; 2021 <a href="{% url 'homepage' %}">KartsSupermarket</a>.
+          </div>
+          {% comment %} <div class="version">
+            <b>Version: </b> 2.0
+          </div> {% endcomment %}
+        </div>
+        <!-- #Footer -->
+      </aside>
+      <!-- #END# Left Sidebar -->
+    </section>
+    {% block main %}{% endblock main %}
+
+
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <form action="{% url 'po' %}" method="POST"> {% csrf_token %}
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="defaultModalLabel">P.O. Number</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <input name="po_num" type="text" class="form-control" autofocus/>
+                  <label class="form-label">P.O.</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success btn-circle waves-effect waves-circle waves-float">
+                <i class="material-icons">
+                  done
+                </i>
+              </button>
+              <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" data-dismiss="modal">
+                <i class="material-icons">
+                  close
+                </i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <form action="{% url 'po' %}" method="POST"> {% csrf_token %}
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="defaultModalLabel">Invoice Scan</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <input name="po_num" type="text" class="form-control" autofocus/>
+                  <label class="form-label">Invoice ID</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success btn-circle waves-effect waves-circle waves-float">
+                <i class="material-icons">
+                  done
+                </i>
+              </button>
+              <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" data-dismiss="modal">
+                <i class="material-icons">
+                  close
+                </i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal fade" id="UPC-Model" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <form action="{% url 'po' %}" method="POST"> {% csrf_token %}
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="defaultModalLabel">Enter Item UPC</h4>
+            </div>
+            <div class="modal-body">
+              <div class="form-group form-float">
+                <div class="form-line">
+                  <input name="upc" type="text" class="form-control" autofocus/>
+                  <label class="form-label">UPC</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="submit" class="btn btn-success btn-circle waves-effect waves-circle waves-float">
+                <i class="material-icons">
+                  done
+                </i>
+              </button>
+              <button type="button" class="btn btn-danger btn-circle waves-effect waves-circle waves-float" data-dismiss="modal">
+                <i class="material-icons">
+                  close
+                </i>
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- SWAL -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{% static 'custom/js/swal/showMessage.js' %}"></script>
+    <!-- Jquery Core Js -->
+    <script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+    <!-- AjaxJS -->
+    <script src="{% static 'custom/js/pages/notification.js' %}"></script>
+    <script src="{% static 'custom/js/reports/main.js' %}"></script>
+    {% block scripts %}
+
+    <!-- Bootstrap Core Js -->
+    <script src="{% static 'plugins/bootstrap/js/bootstrap.js' %}"></script>
+ 
+    <!-- Select Plugin Js -->
+    <script src="{% static 'plugins/bootstrap-select/js/bootstrap-select.js' %}"></script>
+ 
+    <!-- Slimscroll Plugin Js -->
+    <script src="{% static 'plugins/jquery-slimscroll/jquery.slimscroll.js' %}"></script>
+ 
+    <!-- Waves Effect Plugin Js -->
+    <script src="{% static 'plugins/node-waves/waves.js' %}"></script>
+  
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="{% static 'plugins/jquery-countto/jquery.countTo.js' %}"></script>
+   
+    <!-- Morris Plugin Js -->
+    <script src="{% static 'plugins/raphael/raphael.min.js' %}"></script>
+    <script src="{% static 'plugins/morrisjs/morris.js' %}"></script>
+    
+    <!-- ChartJs -->
+    <script src="{% static 'plugins/chartjs/Chart.bundle.js' %}"></script>
+    
+    <!-- Flot Charts Plugin Js -->
+    <script src="{% static 'plugins/flot-charts/jquery.flot.js' %}"></script>
+    <script src="{% static 'plugins/flot-charts/jquery.flot.resize.js' %}"></script>
+    <script src="{% static 'plugins/flot-charts/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'plugins/flot-charts/jquery.flot.categories.js' %}"></script>
+    <script src="{% static 'plugins/flot-charts/jquery.flot.time.js' %}"></script>
+    
+    <!-- Sparkline Chart Plugin Js -->
+    <script src="{% static 'plugins/jquery-sparkline/jquery.sparkline.js' %}"></script>
+    
+    <!-- Custom Js -->
+    <script src="{% static 'js/admin.js' %}"></script>
+    <script src="{% static 'js/pages/index.js' %}"></script>
+    <script src="{% static 'js/pages/tables/jquery-datatable.js' %}"></script>
+
+    <!-- Demo Js -->
+    <script src="{% static 'js/demo.js' %}"></script>
+
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="{% static 'plugins/jquery-datatable/jquery.dataTables.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.flash.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/jszip.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/pdfmake.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/vfs_fonts.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.html5.min.js' %}"></script>
+    <script src="{% static 'plugins/jquery-datatable/extensions/export/buttons.print.min.js' %}"></script>
+    {% endblock scripts %}
+  </body>
+</html>

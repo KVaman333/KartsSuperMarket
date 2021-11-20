@@ -1,0 +1,4 @@
+.pointer {position: absolute; cursor: pointer;}
+.swal-overlay {
+    background-color: rgba(36, 108, 157, 0.45);
+  }
