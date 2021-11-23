@@ -2,18 +2,11 @@ from pathlib import Path
 from firebase_admin import credentials
 import firebase_admin
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 with open(f'{BASE_DIR}/KartsSuperMarket/key.txt') as file:
     SECRET_KEY = file.read().strip()
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 if DEBUG:
     ALLOWED_HOSTS = ['*']
