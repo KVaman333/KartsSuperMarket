@@ -94,19 +94,11 @@ def change_password(request, *args, **kwargs):
 
 
 def handler404(request, *args, **argv):
-    if validate_cookie(request):
-        response = redirect(reverse('pnf_dh'))
-        return response
-    else:
-        response = redirect(reverse('pnf'))
-        return response
+    response = redirect(reverse('pnf'))
+    return response
 def handler500(request, *args, **argv):
-    if validate_cookie(request):
-        response = redirect(reverse('se_dh'))
-        return response
-    else:
-        response = redirect(reverse('se'))
-        return response
+    response = redirect(reverse('se'))
+    return response
 def error404_handler(request, *args, **kwargs):
     return render(request, '404_dh.html')
 def error500_handler(request, *args, **kwargs):
