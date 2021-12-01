@@ -25,7 +25,7 @@ def get_name(item, database):
 @register.filter(name="get_pack_size")
 def get_pack_size(item, database):
     if 'unitP' in database[item].keys() and '' != database[item]['unitP']:
-        return database[item]['pack']
+        return database[item]['packQ']
     return '-'
 
 @register.filter(name="get_price")
