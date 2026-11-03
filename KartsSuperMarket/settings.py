@@ -19,8 +19,8 @@ ALLOWED_HOSTS = ['karts-supermarket.herokuapp.com', 'www.karts-supermarket.herok
 
 cred = credentials.Certificate(BASE_DIR/"KartsSuperMarket/api.json")
 firebase_admin.initialize_app(cred,{
-    'databaseURL': 'https://kart-supermarket-312ce-default-rtdb.firebaseio.com/',
-    'storageBucket': "kart-supermarket-312ce.appspot.com"
+    'databaseURL': 'https://your-url.com/',
+    'storageBucket': "your_bucket"
 })
 
 
